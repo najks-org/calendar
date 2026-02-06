@@ -597,10 +597,20 @@
 
             // Generate Image
             html2canvas(element, { 
-                scale: 2, 
+                scale: 3, // Increased scale for better quality on mobile
                 useCORS: true,
-                backgroundColor: null, // Capture theme background or transparent
-                logging: false
+                backgroundColor: null, 
+                logging: false,
+                windowWidth: 1280, // Force desktop width
+                onclone: (clonedDoc) => {
+                    // Force the cloned element to have a desktop width
+                    const clonedElement = clonedDoc.getElementById('main-content');
+                    clonedElement.style.width = '1280px';
+                    clonedElement.style.maxWidth = 'none';
+                    clonedElement.style.margin = '0 auto';
+                    // Ensure the background extends
+                    clonedElement.classList.add('theme-bg');
+                }
             }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'Ramadan_Calendar_2026.png';
