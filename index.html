@@ -210,33 +210,35 @@
             </div>
         </section>
 
-        <!-- District Selector Section (Redesigned) -->
-        <section class="max-w-2xl mx-auto mb-8 relative z-20 px-2">
+        <!-- District Selector Section (Redesigned for Mobile) -->
+        <section class="max-w-2xl mx-auto mb-8 relative z-20 px-2" data-html2canvas-ignore="true">
             <div class="relative group">
                 <!-- Glow Effect -->
                 <div class="absolute -inset-1 bg-gradient-to-r from-gold-400 to-emerald-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-200"></div>
                 
-                <div class="relative bg-white/95 backdrop-blur-xl p-4 rounded-2xl shadow-xl border border-white/50 flex flex-col sm:flex-row items-center gap-4 transition-all duration-300 group-hover:scale-[1.01]">
+                <!-- Main Container -->
+                <div class="relative bg-white/95 backdrop-blur-xl p-3 sm:p-4 rounded-2xl shadow-xl border border-white/50 flex flex-row items-center gap-3 sm:gap-4 transition-all duration-300 group-hover:scale-[1.01]">
                     
-                    <!-- Icon Box -->
-                    <div class="bg-gradient-to-br from-gold-100 to-gold-200 p-3 rounded-xl text-gold-700 shadow-inner flex-shrink-0">
-                        <i class="fa-solid fa-map-location-dot text-2xl"></i>
+                    <!-- Icon Box (Smaller on mobile) -->
+                    <div class="bg-gradient-to-br from-gold-100 to-gold-200 p-2 sm:p-3 rounded-xl text-gold-700 shadow-inner flex-shrink-0">
+                        <i class="fa-solid fa-map-location-dot text-lg sm:text-2xl"></i>
                     </div>
                     
                     <!-- Selector Area -->
-                    <div class="flex-grow w-full relative">
+                    <div class="flex-grow w-full relative min-w-0"> <!-- min-w-0 prevents flex overflow -->
                         <div class="relative">
-                            <select id="district-select" onchange="changeDistrict()" class="block w-full appearance-none bg-slate-50 border border-slate-200 text-slate-800 font-bold py-3 pl-4 pr-10 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent cursor-pointer shadow-sm text-base md:text-lg transition-all hover:bg-white hover:border-gold-300">
+                            <select id="district-select" onchange="changeDistrict()" class="block w-full appearance-none bg-slate-50 border border-slate-200 text-slate-800 font-bold py-2.5 sm:py-3 pl-3 pr-8 sm:pl-4 sm:pr-10 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent cursor-pointer shadow-sm text-sm sm:text-base md:text-lg transition-all hover:bg-white hover:border-gold-300 truncate">
                                 <!-- Options will be populated by JS -->
                             </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gold-600">
-                                <i class="fa-solid fa-chevron-down text-sm"></i>
+                            <!-- Chevron Icon -->
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 sm:px-4 text-gold-600">
+                                <i class="fa-solid fa-chevron-down text-xs sm:text-sm"></i>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Visual Hint -->
-                    <div class="hidden sm:block text-slate-400 text-xs text-right italic min-w-[70px]">
+                    <!-- Visual Hint (Hidden on tiny screens) -->
+                    <div class="hidden sm:block text-slate-400 text-xs text-right italic min-w-[60px]">
                         <i class="fa-solid fa-check-circle mr-1 text-emerald-500"></i>Active
                     </div>
                 </div>
@@ -379,69 +381,69 @@
         // Format: [Sehri Offset, Iftar Offset] in minutes
         const districts = {
             "ঢাকা": { offset: [0, 0], en: "Dhaka" },
-            "গাজীপুর": { offset: [-1, -1], en: "Gazipur" },
+            "গাজীপুর": { offset: [0, 0], en: "Gazipur" },
             "মানিকগঞ্জ": { offset: [+1, +1], en: "Manikganj" },
             "মুন্সীগঞ্জ": { offset: [-1, -1], en: "Munshiganj" },
-            "নারায়ণগঞ্জ": { offset: [-1, -2], en: "Narayanganj" },
-            "নরসিংদী": { offset: [-2, -3], en: "Narsingdi" },
-            "ফরিদপুর": { offset: [+1, +2], en: "Faridpur" },
-            "গোপালগঞ্জ": { offset: [+1, +2], en: "Gopalganj" },
-            "মাদারীপুর": { offset: [0, +1], en: "Madaripur" },
+            "নারায়ণগঞ্জ": { offset: [-1, -1], en: "Narayanganj" },
+            "নরসিংদী": { offset: [-2, -2], en: "Narsingdi" },
+            "ফরিদপুর": { offset: [+2, +2], en: "Faridpur" },
+            "গোপালগঞ্জ": { offset: [+2, +3], en: "Gopalganj" },
+            "মাদারীপুর": { offset: [+1, +1], en: "Madaripur" },
             "রাজবাড়ী": { offset: [+3, +3], en: "Rajbari" },
-            "শরীয়তপুর": { offset: [-1, -1], en: "Shariatpur" },
-            "কিশোরগঞ্জ": { offset: [-3, -3], en: "Kishoreganj" },
-            "টাঙ্গাইল": { offset: [+1, 0], en: "Tangail" },
-            "চট্টগ্রাম": { offset: [-7, -5], en: "Chattogram" },
-            "বান্দরবান": { offset: [-10, -7], en: "Bandarban" },
+            "শরীয়তপুর": { offset: [+1, +1], en: "Shariatpur" },
+            "কিশোরগঞ্জ": { offset: [-1, -2], en: "Kishoreganj" },
+            "টাঙ্গাইল": { offset: [+2, +1], en: "Tangail" },
+            "চট্টগ্রাম": { offset: [-5, -5], en: "Chattogram" },
+            "বান্দরবান": { offset: [-7, -6], en: "Bandarban" },
             "ব্রাহ্মণবাড়িয়া": { offset: [-3, -3], en: "Brahmanbaria" },
-            "চাঁদপুর": { offset: [-2, -2], en: "Chandpur" },
-            "কুমিল্লা": { offset: [-4, -3], en: "Cumilla" },
-            "কক্সবাজার": { offset: [-9, -6], en: "Cox's Bazar" },
-            "ফেনী": { offset: [-5, -4], en: "Feni" },
-            "খাগড়াছড়ি": { offset: [-7, -6], en: "Khagrachhari" },
-            "লক্ষ্মীপুর": { offset: [-2, -2], en: "Lakshmipur" },
-            "নোয়াখালী": { offset: [-4, -3], en: "Noakhali" },
-            "রাঙ্গামাটি": { offset: [-9, -7], en: "Rangamati" },
-            "সিলেট": { offset: [-8, -8], en: "Sylhet" },
-            "হবিগঞ্জ": { offset: [-4, -5], en: "Habiganj" },
-            "মৌলভীবাজার": { offset: [-7, -7], en: "Moulvibazar" },
-            "সুনামগঞ্জ": { offset: [-4, -5], en: "Sunamganj" },
-            "খুলনা": { offset: [+3, +4], en: "Khulna" },
-            "বাগেরহাট": { offset: [+2, +3], en: "Bagerhat" },
-            "চুয়াডাঙ্গা": { offset: [+6, +5], en: "Chuadanga" },
-            "যশোর": { offset: [+4, +5], en: "Jashore" },
-            "ঝিনাইদহ": { offset: [+4, +5], en: "Jhenaidah" },
+            "চাঁদপুর": { offset: [-2, -1], en: "Chandpur" },
+            "কুমিল্লা": { offset: [-3, -3], en: "Cumilla" },
+            "কক্সবাজার": { offset: [-6, -5], en: "Cox's Bazar" },
+            "ফেনী": { offset: [-4, -4], en: "Feni" },
+            "খাগড়াছড়ি": { offset: [-6, -6], en: "Khagrachhari" },
+            "লক্ষ্মীপুর": { offset: [-2, -1], en: "Lakshmipur" },
+            "নোয়াখালী": { offset: [-3, -2], en: "Noakhali" },
+            "রাঙ্গামাটি": { offset: [-6, -6], en: "Rangamati" },
+            "সিলেট": { offset: [-7, -9], en: "Sylhet" },
+            "হবিগঞ্জ": { offset: [-5, -6], en: "Habiganj" },
+            "মৌলভীবাজার": { offset: [-6, -8], en: "Moulvibazar" },
+            "সুনামগঞ্জ": { offset: [-6, -8], en: "Sunamganj" },
+            "খুলনা": { offset: [+4, +4], en: "Khulna" },
+            "বাগেরহাট": { offset: [+3, +3], en: "Bagerhat" },
+            "চুয়াডাঙ্গা": { offset: [+6, +6], en: "Chuadanga" },
+            "যশোর": { offset: [+5, +5], en: "Jashore" },
+            "ঝিনাইদহ": { offset: [+5, +5], en: "Jhenaidah" },
             "কুষ্টিয়া": { offset: [+5, +5], en: "Kushtia" },
-            "মাগুরা": { offset: [+3, +3], en: "Magura" },
-            "মেহেরপুর": { offset: [+7, +6], en: "Meherpur" },
-            "নড়াইল": { offset: [+3, +3], en: "Narail" },
-            "সাতক্ষীরা": { offset: [+4, +5], en: "Satkhira" },
-            "বরিশাল": { offset: [-1, +1], en: "Barishal" },
-            "বরগুনা": { offset: [0, +2], en: "Barguna" },
-            "ভোলা": { offset: [-3, -1], en: "Bhola" },
-            "ঝালকাঠি": { offset: [0, +1], en: "Jhalakathi" },
-            "পটুয়াখালী": { offset: [-1, +1], en: "Patuakhali" },
-            "পিরোজপুর": { offset: [+1, +1], en: "Pirojpur" },
-            "রাজশাহী": { offset: [+6, +6], en: "Rajshahi" },
-            "বগুড়া": { offset: [+3, +3], en: "Bogura" },
-            "চাঁপাইনবাবগঞ্জ": { offset: [+8, +7], en: "Chapainawabganj" },
-            "জয়পুরহাট": { offset: [+5, +3], en: "Joypurhat" },
-            "নওগাঁ": { offset: [+6, +5], en: "Naogaon" },
-            "নাটোর": { offset: [+5, +4], en: "Natore" },
-            "পাবনা": { offset: [+3, +3], en: "Pabna" },
-            "সিরাজগঞ্জ": { offset: [+3, +2], en: "Sirajganj" },
-            "রংপুর": { offset: [+5, +2], en: "Rangpur" },
-            "দিনাজপুর": { offset: [+5, +4], en: "Dinajpur" },
-            "গাইবান্ধা": { offset: [+4, +2], en: "Gaibandha" },
-            "কুড়িগ্রাম": { offset: [+3, 0], en: "Kurigram" },
-            "লালমনিরহাট": { offset: [+4, +2], en: "Lalmonirhat" },
-            "নীলফামারী": { offset: [+6, +3], en: "Nilphamari" },
-            "পঞ্চগড়": { offset: [+8, +4], en: "Panchagarh" },
-            "ঠাকুরগাঁও": { offset: [+8, +6], en: "Thakurgaon" },
-            "ময়মনসিংহ": { offset: [-1, -1], en: "Mymensingh" },
-            "জামালপুর": { offset: [+2, 0], en: "Jamalpur" },
-            "নেত্রকোনা": { offset: [-3, -3], en: "Netrokona" },
-            "শেরপুর": { offset: [+1, -1], en: "Sherpur" }
+            "মাগুরা": { offset: [+4, +4], en: "Magura" },
+            "মেহেরপুর": { offset: [+7, +7], en: "Meherpur" },
+            "নড়াইল": { offset: [+4, +4], en: "Narail" },
+            "সাতক্ষীরা": { offset: [+5, +6], en: "Satkhira" },
+            "বরিশাল": { offset: [+1, +1], en: "Barishal" },
+            "বরগুনা": { offset: [+1, +2], en: "Barguna" },
+            "ভোলা": { offset: [-1, -1], en: "Bhola" },
+            "ঝালকাঠি": { offset: [+1, +2], en: "Jhalakathi" },
+            "পটুয়াখালী": { offset: [0, +1], en: "Patuakhali" },
+            "পিরোজপুর": { offset: [+2, +2], en: "Pirojpur" },
+            "রাজশাহী": { offset: [+7, +7], en: "Rajshahi" },
+            "বগুড়া": { offset: [+5, +4], en: "Bogura" },
+            "চাঁপাইনবাবগঞ্জ": { offset: [+8, +8], en: "Chapainawabganj" },
+            "জয়পুরহাট": { offset: [+6, +5], en: "Joypurhat" },
+            "নওগাঁ": { offset: [+7, +6], en: "Naogaon" },
+            "নাটোর": { offset: [+6, +5], en: "Natore" },
+            "পাবনা": { offset: [+5, +4], en: "Pabna" },
+            "সিরাজগঞ্জ": { offset: [+4, +3], en: "Sirajganj" },
+            "রংপুর": { offset: [+6, +4], en: "Rangpur" },
+            "দিনাজপুর": { offset: [+7, +6], en: "Dinajpur" },
+            "গাইবান্ধা": { offset: [+5, +3], en: "Gaibandha" },
+            "কুড়িগ্রাম": { offset: [+5, +2], en: "Kurigram" },
+            "লালমনিরহাট": { offset: [+6, +3], en: "Lalmonirhat" },
+            "নীলফামারী": { offset: [+7, +5], en: "Nilphamari" },
+            "পঞ্চগড়": { offset: [+9, +6], en: "Panchagarh" },
+            "ঠাকুরগাঁও": { offset: [+9, +6], en: "Thakurgaon" },
+            "ময়মনসিংহ": { offset: [+1, -1], en: "Mymensingh" },
+            "জামালপুর": { offset: [+3, +1], en: "Jamalpur" },
+            "নেত্রকোনা": { offset: [-1, -2], en: "Netrokona" },
+            "শেরপুর": { offset: [+2, 0], en: "Sherpur" }
         };
 
         // Language Data
@@ -536,37 +538,37 @@
         
         // Data in raw format (Month 0-indexed)
         const rawData = [
-            { r: 1, m: 1, d: 19, s: "05:12", i: "05:58" },
-            { r: 2, m: 1, d: 20, s: "05:11", i: "05:59" },
-            { r: 3, m: 1, d: 21, s: "05:11", i: "05:59" },
-            { r: 4, m: 1, d: 22, s: "05:10", i: "06:00" },
-            { r: 5, m: 1, d: 23, s: "05:09", i: "06:00" },
+            { r: 1, m: 1, d: 19, s: "05:11", i: "05:57" },
+            { r: 2, m: 1, d: 20, s: "05:10", i: "05:58" },
+            { r: 3, m: 1, d: 21, s: "05:10", i: "05:58" },
+            { r: 4, m: 1, d: 22, s: "05:09", i: "05:59" },
+            { r: 5, m: 1, d: 23, s: "05:08", i: "05:59" },
             { r: 6, m: 1, d: 24, s: "05:08", i: "06:00" },
-            { r: 7, m: 1, d: 25, s: "05:08", i: "06:01" },
-            { r: 8, m: 1, d: 26, s: "05:07", i: "06:01" },
-            { r: 9, m: 1, d: 27, s: "05:06", i: "06:02" },
-            { r: 10, m: 1, d: 28, s: "05:05", i: "06:02" },
+            { r: 7, m: 1, d: 25, s: "05:07", i: "06:00" },
+            { r: 8, m: 1, d: 26, s: "05:06", i: "06:01" },
+            { r: 9, m: 1, d: 27, s: "05:05", i: "06:01" },
+            { r: 10, m: 1, d: 28, s: "05:05", i: "06:01" },
             // March
-            { r: 11, m: 2, d: 1, s: "05:05", i: "06:03" },
-            { r: 12, m: 2, d: 2, s: "05:04", i: "06:03" },
-            { r: 13, m: 2, d: 3, s: "05:03", i: "06:04" },
-            { r: 14, m: 2, d: 4, s: "05:02", i: "06:04" },
-            { r: 15, m: 2, d: 5, s: "05:01", i: "06:05" },
-            { r: 16, m: 2, d: 6, s: "05:00", i: "06:05" },
-            { r: 17, m: 2, d: 7, s: "04:59", i: "06:06" },
-            { r: 18, m: 2, d: 8, s: "04:58", i: "06:06" },
-            { r: 19, m: 2, d: 9, s: "04:57", i: "06:07" },
-            { r: 20, m: 2, d: 10, s: "04:57", i: "06:07" },
-            { r: 21, m: 2, d: 11, s: "04:56", i: "06:07" },
-            { r: 22, m: 2, d: 12, s: "04:55", i: "06:08" },
-            { r: 23, m: 2, d: 13, s: "04:54", i: "06:08" },
-            { r: 24, m: 2, d: 14, s: "04:53", i: "06:09" },
-            { r: 25, m: 2, d: 15, s: "04:52", i: "06:09" },
-            { r: 26, m: 2, d: 16, s: "04:51", i: "06:10" },
-            { r: 27, m: 2, d: 17, s: "04:50", i: "06:10" },
-            { r: 28, m: 2, d: 18, s: "04:49", i: "06:10" },
-            { r: 29, m: 2, d: 19, s: "04:48", i: "06:11" },
-            { r: 30, m: 2, d: 20, s: "04:47", i: "06:11" },
+            { r: 11, m: 2, d: 1, s: "05:04", i: "06:02" },
+            { r: 12, m: 2, d: 2, s: "05:03", i: "06:02" },
+            { r: 13, m: 2, d: 3, s: "05:02", i: "06:03" },
+            { r: 14, m: 2, d: 4, s: "05:01", i: "06:03" },
+            { r: 15, m: 2, d: 5, s: "05:00", i: "06:03" },
+            { r: 16, m: 2, d: 6, s: "04:59", i: "06:04" },
+            { r: 17, m: 2, d: 7, s: "04:58", i: "06:04" },
+            { r: 18, m: 2, d: 8, s: "04:57", i: "06:05" },
+            { r: 19, m: 2, d: 9, s: "04:56", i: "06:05" },
+            { r: 20, m: 2, d: 10, s: "04:55", i: "06:05" },
+            { r: 21, m: 2, d: 11, s: "04:54", i: "06:06" },
+            { r: 22, m: 2, d: 12, s: "04:53", i: "06:06" },
+            { r: 23, m: 2, d: 13, s: "04:52", i: "06:06" },
+            { r: 24, m: 2, d: 14, s: "04:51", i: "06:07" },
+            { r: 25, m: 2, d: 15, s: "04:50", i: "06:07" },
+            { r: 26, m: 2, d: 16, s: "04:49", i: "06:07" },
+            { r: 27, m: 2, d: 17, s: "04:48", i: "06:08" },
+            { r: 28, m: 2, d: 18, s: "04:47", i: "06:08" },
+            { r: 29, m: 2, d: 19, s: "04:46", i: "06:09" },
+            { r: 30, m: 2, d: 20, s: "04:45", i: "06:09" },
         ];
 
         let currentLang = 'bn';
@@ -620,18 +622,15 @@
                 const option = document.createElement('option');
                 option.value = dist;
                 option.textContent = dist; 
-                // Do NOT select 'Dhaka' here, let placeholder be selected
                 select.appendChild(option);
             });
         }
 
         function changeDistrict() {
             const select = document.getElementById('district-select');
-            if (!select.value) return; // Ignore if placeholder selected somehow
+            if (!select.value) return; 
             
             currentDistrict = select.value;
-            
-            // Update display name
             const distObj = districts[currentDistrict];
             const displayName = currentLang === 'bn' ? currentDistrict : distObj.en;
             document.getElementById('current-district-name').textContent = displayName;
@@ -649,7 +648,7 @@
 
             Object.values(tables).forEach(el => el.innerHTML = '');
 
-            const offsets = districts[currentDistrict].offset; // [sehri, iftar]
+            const offsets = districts[currentDistrict].offset; 
 
             rawData.forEach(item => {
                 let container, color, text;
@@ -665,7 +664,6 @@
                 const dateStr = formatDate(item.m, item.d);
                 const dayStr = formatDay(item.m, item.d);
                 
-                // Calculate Adjusted Time
                 const sTime = adjustTime(item.s, offsets[0]);
                 const iTime = adjustTime(item.i, offsets[1]);
 
@@ -694,12 +692,9 @@
             });
             document.getElementById('lang-text').textContent = currentLang === 'bn' ? 'EN' : 'BN';
             
-            // Re-update district name
             const distObj = districts[currentDistrict];
             document.getElementById('current-district-name').textContent = currentLang === 'bn' ? currentDistrict : distObj.en;
             
-            // Re-populate to update placeholder language (resets selection to placeholder if not careful, but fine for language toggle)
-            // Ideally, we just update the first option text
             const select = document.getElementById('district-select');
             if (select.options.length > 0) {
                 select.options[0].textContent = translations[currentLang].select_placeholder;
