@@ -82,6 +82,18 @@
             50% { transform: translateY(-10px); }
         }
         .animate-float { animation: float 6s ease-in-out infinite; }
+        
+        /* Custom Select Style */
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
     </style>
 </head>
 <body id="body-container" class="text-slate-800 antialiased selection:bg-gold-200 selection:text-gold-900 theme-bg">
@@ -128,14 +140,16 @@
 
             <div class="relative z-10 px-6 py-8 md:px-12 md:py-14 flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="text-center md:text-left space-y-3 w-full md:w-auto">
-                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-gold-300 text-[10px] md:text-xs font-bold uppercase tracking-widest border border-white/10">
-                        <i class="fa-regular fa-star"></i> <span data-i18n="welcome_ramadan">স্বাগতম মাহে রমজান। সবাইকে ' নাগমুদ আদর্শ যুব ক্রীড়া সংঘ' এর পক্ষ থেকে জানাই পবিত্র রমজানের শুভেচ্ছা ও অভিনন্দন।</span>
+                    <!-- Updated Welcome Message Style -->
+                    <div class="flex items-center gap-2 text-gold-300 text-sm md:text-base font-medium mb-2 justify-center md:justify-start">
+                        <i class="fa-regular fa-star"></i> <span data-i18n="welcome_ramadan">স্বাগতম মাহে রমজান। সবাইকে 'নাগমুদ আদর্শ যুব ক্রীড়া সংঘ' এর পক্ষ থেকে জানাই পবিত্র রমজানের শুভেচ্ছা ও অভিনন্দন।</span>
                     </div>
+                    
                     <h1 class="text-3xl md:text-6xl font-serif font-bold leading-tight">
                         <span data-i18n="hero_prefix">পবিত্র</span> <span class="text-gold-400" data-i18n="hero_ramadan">রমজান</span><br><span data-i18n="hero_suffix">ক্যালেন্ডার ২০২৬</span>
                     </h1>
-                    <p class="text-emerald-100/80 max-w-md text-xs md:text-base leading-relaxed mx-auto md:mx-0" data-i18n="hero_desc">
-                        ঢাকা ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।
+                    <p class="text-emerald-100/80 max-w-md text-xs md:text-base leading-relaxed mx-auto md:mx-0">
+                        <span id="current-district-name" class="font-bold text-yellow-300">ঢাকা</span> <span data-i18n="hero_desc_suffix">ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।</span>
                     </p>
                 </div>
 
@@ -192,6 +206,39 @@
                     <p class="font-arabic text-xl md:text-3xl leading-relaxed text-slate-800 mb-2" dir="rtl">اَللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ اَفْطَرْتُ</p>
                     <p class="text-xs md:text-sm text-slate-500 italic" data-i18n="iftar_dua_pronun">"আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিঝক্বিকা আফতারতু"</p>
                      <p class="text-xs text-slate-400 mt-1" data-i18n="iftar_dua_meaning">অর্থ: হে আল্লাহ! আমি তোমারই জন্য রোজা রেখেছি এবং তোমারই দেওয়া রিজিক দ্বারা ইফতার করলাম।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- District Selector Section (Redesigned) -->
+        <section class="max-w-2xl mx-auto mb-8 relative z-20 px-2">
+            <div class="relative group">
+                <!-- Glow Effect -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-gold-400 to-emerald-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-200"></div>
+                
+                <div class="relative bg-white/95 backdrop-blur-xl p-4 rounded-2xl shadow-xl border border-white/50 flex flex-col sm:flex-row items-center gap-4 transition-all duration-300 group-hover:scale-[1.01]">
+                    
+                    <!-- Icon Box -->
+                    <div class="bg-gradient-to-br from-gold-100 to-gold-200 p-3 rounded-xl text-gold-700 shadow-inner flex-shrink-0">
+                        <i class="fa-solid fa-map-location-dot text-2xl"></i>
+                    </div>
+                    
+                    <!-- Selector Area -->
+                    <div class="flex-grow w-full relative">
+                        <div class="relative">
+                            <select id="district-select" onchange="changeDistrict()" class="block w-full appearance-none bg-slate-50 border border-slate-200 text-slate-800 font-bold py-3 pl-4 pr-10 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent cursor-pointer shadow-sm text-base md:text-lg transition-all hover:bg-white hover:border-gold-300">
+                                <!-- Options will be populated by JS -->
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gold-600">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Hint -->
+                    <div class="hidden sm:block text-slate-400 text-xs text-right italic min-w-[70px]">
+                        <i class="fa-solid fa-check-circle mr-1 text-emerald-500"></i>Active
+                    </div>
                 </div>
             </div>
         </section>
@@ -296,22 +343,19 @@
                 <!-- Brand -->
                 <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
                      <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full p-1 flex items-center justify-center shadow-lg border-2 border-gold-400 overflow-hidden transform hover:scale-105 transition-transform duration-300 relative">
-                        <!-- IMPORTANT: Changed src to use a fallback if missing, preventing html2canvas error -->
                         <img src="1-01.png" alt="Logo" class="w-full h-full object-cover rounded-full" 
                              onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; document.getElementById('fallback-logo').style.display='flex';">
-                        <!-- Fallback Icon -->
                         <div id="fallback-logo" class="hidden absolute inset-0 flex items-center justify-center text-emerald-600 text-3xl">
                             <i class="fa-solid fa-users"></i>
                         </div>
                     </div>
                     <div>
-                        <h2 class="text-xl md:text-2xl font-serif font-bold text-gold-400" data-i18n="org_name">নাগমুদ আদর্শ যুব ক্রীড়া সংঘ</h2>
+                        <h3 class="text-xl md:text-2xl font-serif font-bold text-gold-400" data-i18n="org_name">নাগমুদ আদর্শ যুব ক্রীড়া সংঘ</h3>
                         <p class="text-slate-400 text-xs md:text-sm" data-i18n="org_desc">স্বেচ্ছাসেবী, অরাজনৈতিক সামাজিক সংগঠন।</p>
-                        <p class="text-slate-400 text-xs md:text-sm" data-i18n="org_desc">নাগমুদ, রামগঞ্জ, লক্ষ্মীপুর, চট্টগ্রাম, বাংলাদেশ।</p>
                     </div>
                 </div>
 
-                <!-- Download Button (Replaces Address) -->
+                <!-- Download Button -->
                 <div class="text-center md:text-right space-y-2" data-html2canvas-ignore="true">
                     <button onclick="downloadImage(this)" class="bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-500 hover:to-gold-700 text-slate-900 font-bold py-2.5 px-6 rounded-xl text-xs md:text-sm flex items-center gap-2 transition-all shadow-lg mx-auto md:ml-auto transform hover:scale-105">
                         <i class="fa-solid fa-image"></i>
@@ -321,7 +365,7 @@
             </div>
             
             <div class="mt-8 pt-6 border-t border-slate-700/50 text-center text-xs text-slate-500">
-                &copy; <span data-i18n="footer_copy">২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Master Creation</span>
+                &copy; <span data-i18n="footer_copy">২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Digital Creative</span>
             </div>
         </footer>
 
@@ -329,17 +373,86 @@
 
     <!-- JS Logic -->
     <script>
+        // District Data with Offsets relative to Dhaka
+        // Format: [Sehri Offset, Iftar Offset] in minutes
+        const districts = {
+            "ঢাকা": { offset: [0, 0], en: "Dhaka" },
+            "গাজীপুর": { offset: [-1, -1], en: "Gazipur" },
+            "মানিকগঞ্জ": { offset: [+1, +1], en: "Manikganj" },
+            "মুন্সীগঞ্জ": { offset: [-1, -1], en: "Munshiganj" },
+            "নারায়ণগঞ্জ": { offset: [-1, -2], en: "Narayanganj" },
+            "নরসিংদী": { offset: [-2, -3], en: "Narsingdi" },
+            "ফরিদপুর": { offset: [+1, +2], en: "Faridpur" },
+            "গোপালগঞ্জ": { offset: [+1, +2], en: "Gopalganj" },
+            "মাদারীপুর": { offset: [0, +1], en: "Madaripur" },
+            "রাজবাড়ী": { offset: [+3, +3], en: "Rajbari" },
+            "শরীয়তপুর": { offset: [-1, -1], en: "Shariatpur" },
+            "কিশোরগঞ্জ": { offset: [-3, -3], en: "Kishoreganj" },
+            "টাঙ্গাইল": { offset: [+1, 0], en: "Tangail" },
+            "চট্টগ্রাম": { offset: [-7, -5], en: "Chattogram" },
+            "বান্দরবান": { offset: [-10, -7], en: "Bandarban" },
+            "ব্রাহ্মণবাড়িয়া": { offset: [-3, -3], en: "Brahmanbaria" },
+            "চাঁদপুর": { offset: [-2, -2], en: "Chandpur" },
+            "কুমিল্লা": { offset: [-4, -3], en: "Cumilla" },
+            "কক্সবাজার": { offset: [-9, -6], en: "Cox's Bazar" },
+            "ফেনী": { offset: [-5, -4], en: "Feni" },
+            "খাগড়াছড়ি": { offset: [-7, -6], en: "Khagrachhari" },
+            "লক্ষ্মীপুর": { offset: [-2, -2], en: "Lakshmipur" },
+            "নোয়াখালী": { offset: [-4, -3], en: "Noakhali" },
+            "রাঙ্গামাটি": { offset: [-9, -7], en: "Rangamati" },
+            "সিলেট": { offset: [-8, -8], en: "Sylhet" },
+            "হবিগঞ্জ": { offset: [-4, -5], en: "Habiganj" },
+            "মৌলভীবাজার": { offset: [-7, -7], en: "Moulvibazar" },
+            "সুনামগঞ্জ": { offset: [-4, -5], en: "Sunamganj" },
+            "খুলনা": { offset: [+3, +4], en: "Khulna" },
+            "বাগেরহাট": { offset: [+2, +3], en: "Bagerhat" },
+            "চুয়াডাঙ্গা": { offset: [+6, +5], en: "Chuadanga" },
+            "যশোর": { offset: [+4, +5], en: "Jashore" },
+            "ঝিনাইদহ": { offset: [+4, +5], en: "Jhenaidah" },
+            "কুষ্টিয়া": { offset: [+5, +5], en: "Kushtia" },
+            "মাগুরা": { offset: [+3, +3], en: "Magura" },
+            "মেহেরপুর": { offset: [+7, +6], en: "Meherpur" },
+            "নড়াইল": { offset: [+3, +3], en: "Narail" },
+            "সাতক্ষীরা": { offset: [+4, +5], en: "Satkhira" },
+            "বরিশাল": { offset: [-1, +1], en: "Barishal" },
+            "বরগুনা": { offset: [0, +2], en: "Barguna" },
+            "ভোলা": { offset: [-3, -1], en: "Bhola" },
+            "ঝালকাঠি": { offset: [0, +1], en: "Jhalakathi" },
+            "পটুয়াখালী": { offset: [-1, +1], en: "Patuakhali" },
+            "পিরোজপুর": { offset: [+1, +1], en: "Pirojpur" },
+            "রাজশাহী": { offset: [+6, +6], en: "Rajshahi" },
+            "বগুড়া": { offset: [+3, +3], en: "Bogura" },
+            "চাঁপাইনবাবগঞ্জ": { offset: [+8, +7], en: "Chapainawabganj" },
+            "জয়পুরহাট": { offset: [+5, +3], en: "Joypurhat" },
+            "নওগাঁ": { offset: [+6, +5], en: "Naogaon" },
+            "নাটোর": { offset: [+5, +4], en: "Natore" },
+            "পাবনা": { offset: [+3, +3], en: "Pabna" },
+            "সিরাজগঞ্জ": { offset: [+3, +2], en: "Sirajganj" },
+            "রংপুর": { offset: [+5, +2], en: "Rangpur" },
+            "দিনাজপুর": { offset: [+5, +4], en: "Dinajpur" },
+            "গাইবান্ধা": { offset: [+4, +2], en: "Gaibandha" },
+            "কুড়িগ্রাম": { offset: [+3, 0], en: "Kurigram" },
+            "লালমনিরহাট": { offset: [+4, +2], en: "Lalmonirhat" },
+            "নীলফামারী": { offset: [+6, +3], en: "Nilphamari" },
+            "পঞ্চগড়": { offset: [+8, +4], en: "Panchagarh" },
+            "ঠাকুরগাঁও": { offset: [+8, +6], en: "Thakurgaon" },
+            "ময়মনসিংহ": { offset: [-1, -1], en: "Mymensingh" },
+            "জামালপুর": { offset: [+2, 0], en: "Jamalpur" },
+            "নেত্রকোনা": { offset: [-3, -3], en: "Netrokona" },
+            "শেরপুর": { offset: [+1, -1], en: "Sherpur" }
+        };
+
         // Language Data
         const translations = {
             bn: {
                 title: "তোহফায়ে রমাদান",
                 title_mobile: "রমাদান ২০২৬",
                 hijri_year: "১৪৪৭ হিজরী",
-                welcome_ramadan: "স্বাগতম মাহে রমজান",
+                welcome_ramadan: "স্বাগতম মাহে রমজান। সবাইকে 'নাগমুদ আদর্শ যুব ক্রীড়া সংঘ' এর পক্ষ থেকে জানাই পবিত্র রমজানের শুভেচ্ছা ও অভিনন্দন।",
                 hero_prefix: "পবিত্র",
                 hero_ramadan: "রমজান",
                 hero_suffix: "ক্যালেন্ডার ২০২৬",
-                hero_desc: "ঢাকা ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।",
+                hero_desc_suffix: "ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।",
                 sehri_label: "সাহরী শেষ",
                 iftar_label: "ইফতার",
                 sehri_dua_title: "রোজার নিয়ত (সাহরী)",
@@ -368,17 +481,19 @@
                 today_schedule: "আজকের সময়সূচী",
                 upcoming_ramadan: "আসন্ন রমজান",
                 ramadan_ended: "রমজান সমাপ্ত",
-                ramadan_text: " রমজান"
+                ramadan_text: " রমজান",
+                select_district_label: "আপনার জেলা নির্বাচন করুন",
+                select_placeholder: "📍 আপনার জেলা নির্বাচন করুন"
             },
             en: {
                 title: "Tohfaye Ramadan",
                 title_mobile: "Ramadan 2026",
                 hijri_year: "1447 Hijri",
-                welcome_ramadan: "Welcome Ramadan",
+                welcome_ramadan: "Welcome Ramadan. Greetings from 'Nagmud Adarsha Jubo Krira Sangha'.",
                 hero_prefix: "Holy",
                 hero_ramadan: "Ramadan",
                 hero_suffix: "Calendar 2026",
-                hero_desc: "Sehri and Iftar schedule for Dhaka and surrounding areas as per Islamic Foundation Bangladesh.",
+                hero_desc_suffix: "and surrounding areas Sehri and Iftar schedule provided by Islamic Foundation Bangladesh.",
                 sehri_label: "Sehri Ends",
                 iftar_label: "Iftar Time",
                 sehri_dua_title: "Intention for Fasting (Sehri)",
@@ -407,12 +522,14 @@
                 today_schedule: "Today's Schedule",
                 upcoming_ramadan: "Upcoming Ramadan",
                 ramadan_ended: "Ramadan Ended",
-                ramadan_text: " Ramadan"
+                ramadan_text: " Ramadan",
+                select_district_label: "Select Your District",
+                select_placeholder: "📍 Select Your District"
             }
         };
 
         // Number Converters
-        const bnToEnDigits = n => n.replace(/[০-৯]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d)); // Not strictly needed if we store raw data
+        const bnToEnDigits = n => n.replace(/[০-৯]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
         const enToBnDigits = n => n.toString().replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]);
         
         // Data in raw format (Month 0-indexed)
@@ -451,6 +568,18 @@
         ];
 
         let currentLang = 'bn';
+        let currentDistrict = "ঢাকা";
+
+        // Helpers
+        // Removed duplicate variable declarations
+
+        function adjustTime(timeStr, offset) {
+            const [h, m] = timeStr.split(':').map(Number);
+            let date = new Date(2026, 0, 1, h, m + offset);
+            let newH = date.getHours().toString().padStart(2, '0');
+            let newM = date.getMinutes().toString().padStart(2, '0');
+            return `${newH}:${newM}`;
+        }
 
         function formatTime(timeStr) {
             if (currentLang === 'en') return timeStr;
@@ -472,6 +601,43 @@
             return currentLang === 'bn' ? dayName + ":" : dayName;
         }
 
+        function populateDistricts() {
+            const select = document.getElementById('district-select');
+            select.innerHTML = '';
+            
+            // Add Placeholder Option
+            const placeholder = document.createElement('option');
+            placeholder.value = "";
+            placeholder.textContent = translations[currentLang].select_placeholder;
+            placeholder.disabled = true;
+            placeholder.selected = true; // Select by default so text appears in box
+            select.appendChild(placeholder);
+
+            // Sort keys
+            Object.keys(districts).sort().forEach(dist => {
+                const option = document.createElement('option');
+                option.value = dist;
+                option.textContent = dist; 
+                // Do NOT select 'Dhaka' here, let placeholder be selected
+                select.appendChild(option);
+            });
+        }
+
+        function changeDistrict() {
+            const select = document.getElementById('district-select');
+            if (!select.value) return; // Ignore if placeholder selected somehow
+            
+            currentDistrict = select.value;
+            
+            // Update display name
+            const distObj = districts[currentDistrict];
+            const displayName = currentLang === 'bn' ? currentDistrict : distObj.en;
+            document.getElementById('current-district-name').textContent = displayName;
+
+            renderTables();
+            updateHighlight();
+        }
+
         function renderTables() {
             const tables = {
                 rahmat: document.getElementById('rahmat-rows'),
@@ -479,27 +645,9 @@
                 nazat: document.getElementById('nazat-rows')
             };
 
-            // Clear existing
             Object.values(tables).forEach(el => el.innerHTML = '');
 
-            // Row Template
-            const createRow = (item, colorClass, textClass) => {
-                const ramadan = currentLang === 'bn' ? enToBnDigits(item.r.toString().padStart(2, '0')) : item.r.toString().padStart(2, '0');
-                const dateStr = formatDate(item.m, item.d);
-                const dayStr = formatDay(item.m, item.d);
-                const sehri = formatTime(item.s);
-                const iftar = formatTime(item.i);
-
-                return `
-                    <div class="grid grid-cols-5 gap-2 items-center text-center bg-white p-2.5 rounded-xl shadow-sm border border-slate-100 prayer-row text-sm">
-                        <div class="font-bold text-slate-700 bg-slate-100 w-7 h-7 mx-auto flex items-center justify-center rounded-full text-xs">${ramadan}</div>
-                        <div class="text-slate-600 text-xs">${dateStr}</div>
-                        <div class="text-slate-500 text-xs">${dayStr}</div>
-                        <div class="font-bold ${textClass} bg-${colorClass}-50 py-1 rounded-lg text-xs">${sehri}</div>
-                        <div class="font-bold text-slate-800 bg-gold-50 py-1 rounded-lg text-xs">${iftar}</div>
-                    </div>
-                `;
-            };
+            const offsets = districts[currentDistrict].offset; // [sehri, iftar]
 
             rawData.forEach(item => {
                 let container, color, text;
@@ -510,7 +658,28 @@
                 } else {
                     container = tables.nazat; color = 'amber'; text = 'text-amber-700';
                 }
-                container.innerHTML += createRow(item, color, text);
+
+                const ramadan = currentLang === 'bn' ? enToBnDigits(item.r.toString().padStart(2, '0')) : item.r.toString().padStart(2, '0');
+                const dateStr = formatDate(item.m, item.d);
+                const dayStr = formatDay(item.m, item.d);
+                
+                // Calculate Adjusted Time
+                const sTime = adjustTime(item.s, offsets[0]);
+                const iTime = adjustTime(item.i, offsets[1]);
+
+                const sehri = formatTime(sTime);
+                const iftar = formatTime(iTime);
+
+                const row = `
+                    <div class="grid grid-cols-5 gap-2 items-center text-center bg-white p-2.5 rounded-xl shadow-sm border border-slate-100 prayer-row text-sm">
+                        <div class="font-bold text-slate-700 bg-slate-100 w-7 h-7 mx-auto flex items-center justify-center rounded-full text-xs">${ramadan}</div>
+                        <div class="text-slate-600 text-xs">${dateStr}</div>
+                        <div class="text-slate-500 text-xs">${dayStr}</div>
+                        <div class="font-bold ${text} bg-${color}-50 py-1 rounded-lg text-xs">${sehri}</div>
+                        <div class="font-bold text-slate-800 bg-gold-50 py-1 rounded-lg text-xs">${iftar}</div>
+                    </div>
+                `;
+                container.innerHTML += row;
             });
         }
 
@@ -522,6 +691,17 @@
                 }
             });
             document.getElementById('lang-text').textContent = currentLang === 'bn' ? 'EN' : 'BN';
+            
+            // Re-update district name
+            const distObj = districts[currentDistrict];
+            document.getElementById('current-district-name').textContent = currentLang === 'bn' ? currentDistrict : distObj.en;
+            
+            // Re-populate to update placeholder language (resets selection to placeholder if not careful, but fine for language toggle)
+            // Ideally, we just update the first option text
+            const select = document.getElementById('district-select');
+            if (select.options.length > 0) {
+                select.options[0].textContent = translations[currentLang].select_placeholder;
+            }
         }
 
         function updateLiveDate() {
@@ -557,14 +737,18 @@
             }
 
             const t = translations[currentLang];
+            const offsets = districts[currentDistrict].offset;
             const rNum = currentLang === 'bn' ? enToBnDigits(todayData.r.toString().padStart(2, '0')) : todayData.r.toString().padStart(2, '0');
             const dateStr = formatDate(todayData.m, todayData.d);
             
+            const sTime = adjustTime(todayData.s, offsets[0]);
+            const iTime = adjustTime(todayData.i, offsets[1]);
+
             document.getElementById('highlight-status').textContent = t[statusKey];
             document.getElementById('highlight-ramadan').textContent = rNum + t.ramadan_text;
             document.getElementById('highlight-date').textContent = dateStr + (currentLang === 'bn' ? ", ২০২৬" : ", 2026");
-            document.getElementById('highlight-sehri').textContent = formatTime(todayData.s);
-            document.getElementById('highlight-iftar').textContent = formatTime(todayData.i);
+            document.getElementById('highlight-sehri').textContent = formatTime(sTime);
+            document.getElementById('highlight-iftar').textContent = formatTime(iTime);
         }
 
         function toggleLanguage() {
@@ -576,50 +760,39 @@
         }
 
         function downloadImage(btn) {
-            // Element to download - Targeted ID
             const element = document.getElementById('main-content');
-            
-            // Image handling logic
             const logoImg = document.querySelector('img[alt="Logo"]');
             const fallbackIcon = document.getElementById('fallback-logo');
             
             let originalDisplay = '';
-            
-            // Check if image is loaded properly
             if (logoImg && (!logoImg.complete || logoImg.naturalWidth === 0)) {
-                // If broken, hide it so html2canvas doesn't crash
                 originalDisplay = logoImg.style.display;
                 logoImg.style.display = 'none';
                 if(fallbackIcon) fallbackIcon.style.display = 'flex';
             }
 
-            // Hide button
             btn.style.display = 'none';
 
-            // Generate Image
             html2canvas(element, { 
-                scale: 3, // Increased scale for better quality on mobile
+                scale: 3, 
                 useCORS: true,
                 backgroundColor: null, 
                 logging: false,
-                windowWidth: 1280, // Force desktop width
+                windowWidth: 1280, 
                 onclone: (clonedDoc) => {
-                    // Force the cloned element to have a desktop width
                     const clonedElement = clonedDoc.getElementById('main-content');
                     clonedElement.style.width = '1280px';
                     clonedElement.style.maxWidth = 'none';
                     clonedElement.style.margin = '0 auto';
-                    // Ensure the background extends
                     clonedElement.classList.add('theme-bg');
                 }
             }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'Ramadan_Calendar_2026.png';
+                link.download = `Ramadan_Calendar_2026_${currentDistrict}.png`;
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 
                 btn.style.display = 'flex';
-                // Restore image state if changed
                 if (logoImg && originalDisplay !== '') {
                     logoImg.style.display = originalDisplay;
                 }
@@ -633,8 +806,8 @@
             });
         }
 
-        // Init
         window.onload = function() {
+            populateDistricts();
             updateStaticText();
             renderTables();
             updateLiveDate();
@@ -644,4 +817,3 @@
 
 </body>
 </html>
-
