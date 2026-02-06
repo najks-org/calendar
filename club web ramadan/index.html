@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>তোহফায়ে রমাদান - Ramadan Calendar 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- HTML2Canvas Library for Image Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fffbf0',
+                            100: '#fef5cd',
+                            200: '#fde890',
+                            300: '#fcd555',
+                            400: '#fac226',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        },
+                        emerald: {
+                            850: '#064e3b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Hind Siliguri"', '"Inter"', 'sans-serif'],
+                        serif: ['"Noto Serif Bengali"', 'serif'],
+                        arabic: ['"Amiri"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Define background in a class to apply to both body and PDF container */
+        .theme-bg {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d97706' fill-opacity='0.03'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .prayer-row {
+            transition: all 0.2s ease;
+        }
+        .prayer-row:hover {
+            transform: scale(1.01);
+            background-color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid #d97706;
+        }
+
+        /* Smooth Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+    </style>
+</head>
+<body id="body-container" class="text-slate-800 antialiased selection:bg-gold-200 selection:text-gold-900 theme-bg">
+
+    <!-- Navbar -->
+    <nav class="w-full bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200/60 shadow-sm" data-html2canvas-ignore="true">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-gold-100 flex items-center justify-center text-gold-600">
+                    <i class="fa-solid fa-moon"></i>
+                </div>
+                <span class="font-serif font-bold text-lg text-slate-700 hidden md:block" data-i18n="title">তোহফায়ে রমাদান</span>
+                <span class="font-serif font-bold text-base text-slate-700 block md:hidden" data-i18n="title_mobile">রমাদান ২০২৬</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <div class="text-[10px] md:text-xs font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap flex items-center gap-1.5 hidden sm:flex">
+                    <i class="fa-regular fa-calendar-days text-gold-500"></i>
+                    <span id="live-date" class="font-bold text-slate-600"></span> 
+                    <span class="text-slate-300">|</span> 
+                    <span data-i18n="hijri_year">১৪৪৭ হিজরী</span>
+                </div>
+
+                <!-- Language Switcher -->
+                <button onclick="toggleLanguage()" class="flex items-center gap-1 bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition-colors shadow-sm">
+                    <i class="fa-solid fa-language text-lg"></i>
+                    <span id="lang-text">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Wrap content in main with ID for targeting -->
+    <!-- Added theme-bg here to ensure background is captured in PDF -->
+    <main id="main-content" class="max-w-7xl mx-auto px-4 py-6 md:py-10 flex flex-col gap-6 md:gap-8 theme-bg">
+
+        <!-- Hero Header -->
+        <header class="relative rounded-3xl overflow-hidden bg-emerald-900 text-white shadow-2xl">
+            <!-- Background Image: Replaced with Data URI to prevent loading error -->
+            <div class="absolute top-0 right-0 w-full h-full opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M20 20l10-10L20 0 10 10zM20 20L10 30 20 40 30 30z\' fill=\'%23ffffff\' fill-rule=\'evenodd\'/%3E%3C/svg%3E'); background-size: 20px 20px;"></div>
+            
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-gold-500 rounded-full blur-3xl opacity-20"></div>
+            <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-emerald-500 rounded-full blur-3xl opacity-30"></div>
+
+            <div class="relative z-10 px-6 py-8 md:px-12 md:py-14 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left space-y-3 w-full md:w-auto">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-gold-300 text-[10px] md:text-xs font-bold uppercase tracking-widest border border-white/10">
+                        <i class="fa-regular fa-star"></i> <span data-i18n="welcome_ramadan">স্বাগতম মাহে রমজান</span>
+                    </div>
+                    <h1 class="text-3xl md:text-6xl font-serif font-bold leading-tight">
+                        <span data-i18n="hero_prefix">পবিত্র</span> <span class="text-gold-400" data-i18n="hero_ramadan">রমজান</span><br><span data-i18n="hero_suffix">ক্যালেন্ডার ২০২৬</span>
+                    </h1>
+                    <p class="text-emerald-100/80 max-w-md text-xs md:text-base leading-relaxed mx-auto md:mx-0" data-i18n="hero_desc">
+                        ঢাকা ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।
+                    </p>
+                </div>
+
+                <!-- Highlight Card -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 w-full md:w-80 flex flex-col items-center shadow-lg animate-float">
+                    <div id="highlight-status" class="text-gold-300 text-sm font-medium mb-1">আজকের সময়সূচী</div>
+                    <div id="highlight-ramadan" class="text-3xl font-bold font-serif mb-2">০১ রমজান</div>
+                    <div id="highlight-date" class="text-emerald-100/70 text-xs mb-4">১৯ ফেব্রুয়ারি, ২০২৬</div>
+
+                    <div class="flex justify-between w-full gap-2">
+                        <div class="bg-emerald-800/50 flex-1 p-3 rounded-xl text-center border border-emerald-700/50">
+                            <i class="fa-solid fa-cloud-moon text-emerald-300 text-lg mb-1"></i>
+                            <div class="text-xs text-emerald-200" data-i18n="sehri_label">সাহরী শেষ</div>
+                            <div id="highlight-sehri" class="text-lg font-bold">৫:০৪</div>
+                        </div>
+                        <div class="bg-gold-600/20 flex-1 p-3 rounded-xl text-center border border-gold-500/30">
+                            <i class="fa-solid fa-mug-hot text-gold-300 text-lg mb-1"></i>
+                            <div class="text-xs text-gold-100" data-i18n="iftar_label">ইফতার</div>
+                            <div id="highlight-iftar" class="text-lg font-bold">৬:০২</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Duas Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <!-- Sehri -->
+            <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:border-emerald-300 transition-colors">
+                <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl text-emerald-600 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <h3 class="text-emerald-700 font-bold text-lg mb-4 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600"><i class="fa-solid fa-book-open"></i></span>
+                    <span data-i18n="sehri_dua_title">রোজার নিয়ত (সাহরী)</span>
+                </h3>
+                <div class="bg-emerald-50/50 rounded-xl p-4 text-center border border-emerald-100">
+                    <p class="font-arabic text-xl md:text-3xl leading-relaxed text-slate-800 mb-2" dir="rtl">نَوَيْتُ اَنْ اُصُوْمَ غَدًا مِّنْ شَهْرِ رَمْضَانَ الْمُبَارَكِ</p>
+                    <p class="text-xs md:text-sm text-slate-500 italic" data-i18n="sehri_dua_pronun">"নাওয়াইতু আন আছুমা গাদাম মিন শাহরি রমাদ্বানাল মুবারাক"</p>
+                    <p class="text-xs text-slate-400 mt-1" data-i18n="sehri_dua_meaning">অর্থ: হে আল্লাহ! আমি আগামীকাল পবিত্র রমজানের রোজা রাখার নিয়ত করছি।</p>
+                </div>
+            </div>
+
+            <!-- Iftar -->
+            <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:border-gold-300 transition-colors">
+                <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl text-gold-600 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-water"></i>
+                </div>
+                <h3 class="text-gold-700 font-bold text-lg mb-4 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg bg-gold-100 flex items-center justify-center text-gold-600"><i class="fa-solid fa-hands-holding-circle"></i></span>
+                    <span data-i18n="iftar_dua_title">ইফতারের দোয়া</span>
+                </h3>
+                <div class="bg-gold-50/50 rounded-xl p-4 text-center border border-gold-100">
+                    <p class="font-arabic text-xl md:text-3xl leading-relaxed text-slate-800 mb-2" dir="rtl">اَللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ اَفْطَرْتُ</p>
+                    <p class="text-xs md:text-sm text-slate-500 italic" data-i18n="iftar_dua_pronun">"আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিঝক্বিকা আফতারতু"</p>
+                     <p class="text-xs text-slate-400 mt-1" data-i18n="iftar_dua_meaning">অর্থ: হে আল্লাহ! আমি তোমারই জন্য রোজা রেখেছি এবং তোমারই দেওয়া রিজিক দ্বারা ইফতার করলাম।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Calendar Section -->
+        <section class="space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- Ashra 1: Rahmat -->
+                <div class="rounded-3xl bg-white shadow-xl overflow-hidden border border-slate-100 flex flex-col">
+                    <div class="bg-gradient-to-r from-emerald-600 to-emerald-800 px-6 py-4 flex justify-between items-center text-white">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-serif font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-cloud-showers-heavy opacity-70"></i> <span data-i18n="ashra_1_title">রহমত</span>
+                            </h2>
+                            <p class="text-emerald-100 text-[10px] md:text-xs tracking-wide opacity-80" data-i18n="ashra_1_subtitle">প্রথম ১০ দিন | করুণা</p>
+                        </div>
+                        <span class="text-3xl font-bold opacity-10">01</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 overflow-x-auto flex-grow">
+                        <div class="min-w-[300px] md:min-w-full">
+                            <div class="grid grid-cols-5 gap-2 mb-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
+                                <div data-i18n="col_ramadan">রমজান</div>
+                                <div data-i18n="col_date">তারিখ</div>
+                                <div data-i18n="col_day">বার</div>
+                                <div class="text-emerald-600" data-i18n="col_sehri">সেহরি</div>
+                                <div class="text-gold-600" data-i18n="col_iftar">ইফতার</div>
+                            </div>
+                            <div id="rahmat-rows" class="space-y-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ashra 2: Maghfirat -->
+                <div class="rounded-3xl bg-white shadow-xl overflow-hidden border border-slate-100 flex flex-col">
+                    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-4 flex justify-between items-center text-white">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-serif font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-hands-praying opacity-70"></i> <span data-i18n="ashra_2_title">মাগফিরাত</span>
+                            </h2>
+                            <p class="text-blue-100 text-[10px] md:text-xs tracking-wide opacity-80" data-i18n="ashra_2_subtitle">দ্বিতীয় ১০ দিন | ক্ষমা</p>
+                        </div>
+                        <span class="text-3xl font-bold opacity-10">02</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 overflow-x-auto flex-grow">
+                        <div class="min-w-[300px] md:min-w-full">
+                            <div class="grid grid-cols-5 gap-2 mb-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
+                                <div data-i18n="col_ramadan">রমজান</div>
+                                <div data-i18n="col_date">তারিখ</div>
+                                <div data-i18n="col_day">বার</div>
+                                <div class="text-blue-600" data-i18n="col_sehri">সেহরি</div>
+                                <div class="text-gold-600" data-i18n="col_iftar">ইফতার</div>
+                            </div>
+                            <div id="maghfirat-rows" class="space-y-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ashra 3: Nazat -->
+                <div class="rounded-3xl bg-white shadow-xl overflow-hidden border border-slate-100 flex flex-col">
+                    <div class="bg-gradient-to-r from-amber-600 to-orange-700 px-6 py-4 flex justify-between items-center text-white">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-serif font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-door-open opacity-70"></i> <span data-i18n="ashra_3_title">নাজাত</span>
+                            </h2>
+                            <p class="text-amber-100 text-[10px] md:text-xs tracking-wide opacity-80" data-i18n="ashra_3_subtitle">তৃতীয় ১০ দিন | মুক্তি</p>
+                        </div>
+                        <span class="text-3xl font-bold opacity-10">03</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 overflow-x-auto flex-grow">
+                         <div class="min-w-[300px] md:min-w-full">
+                             <div class="grid grid-cols-5 gap-2 mb-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
+                                <div data-i18n="col_ramadan">রমজান</div>
+                                <div data-i18n="col_date">তারিখ</div>
+                                <div data-i18n="col_day">বার</div>
+                                <div class="text-amber-700" data-i18n="col_sehri">সেহরি</div>
+                                <div class="text-gold-600" data-i18n="col_iftar">ইফতার</div>
+                            </div>
+                            <div id="nazat-rows" class="space-y-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Warning Note -->
+            <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1"></i>
+                <div class="text-xs md:text-sm text-red-700">
+                    <strong data-i18n="warning_title">সতর্কতা:</strong> <span data-i18n="warning_text">সাহরীর শেষ সময়ের ৩ মিনিট আগে পানাহার বন্ধ করবেন এবং ইফতারের সময়ের ৩ মিনিট পর ইফতার করবেন। এখানে প্রদত্ত সময়সূচী সতর্কতামূলক।</span>
+                </div>
+            </div>
+
+        </section>
+        
+        <!-- Sponsor / Footer -->
+        <footer class="mt-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-gold-600 opacity-20 blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 rounded-full bg-emerald-600 opacity-20 blur-3xl"></div>
+
+            <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Brand -->
+                <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
+                     <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full p-1 flex items-center justify-center shadow-lg border-2 border-gold-400 overflow-hidden transform hover:scale-105 transition-transform duration-300 relative">
+                        <!-- IMPORTANT: Changed src to use a fallback if missing, preventing html2canvas error -->
+                        <img src="1-01.png" alt="Logo" class="w-full h-full object-cover rounded-full" 
+                             onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; document.getElementById('fallback-logo').style.display='flex';">
+                        <!-- Fallback Icon -->
+                        <div id="fallback-logo" class="hidden absolute inset-0 flex items-center justify-center text-emerald-600 text-3xl">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-serif font-bold text-gold-400" data-i18n="org_name">নাগমুদ আদর্শ যুব ক্রীড়া সংঘ</h3>
+                        <p class="text-slate-400 text-xs md:text-sm" data-i18n="org_desc">স্বেচ্ছাসেবী, অরাজনৈতিক সামাজিক সংগঠন।</p>
+                    </div>
+                </div>
+
+                <!-- Download Button (Replaces Address) -->
+                <div class="text-center md:text-right space-y-2" data-html2canvas-ignore="true">
+                    <button onclick="downloadImage(this)" class="bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-500 hover:to-gold-700 text-slate-900 font-bold py-2.5 px-6 rounded-xl text-xs md:text-sm flex items-center gap-2 transition-all shadow-lg mx-auto md:ml-auto transform hover:scale-105">
+                        <i class="fa-solid fa-image"></i>
+                        <span data-i18n="download_pdf">ক্যালেন্ডার ডাউনলোড করুন</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-slate-700/50 text-center text-xs text-slate-500">
+                &copy; <span data-i18n="footer_copy">২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Digital Creative</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- JS Logic -->
+    <script>
+        // Language Data
+        const translations = {
+            bn: {
+                title: "তোহফায়ে রমাদান",
+                title_mobile: "রমাদান ২০২৬",
+                hijri_year: "১৪৪৭ হিজরী",
+                welcome_ramadan: "স্বাগতম মাহে রমজান",
+                hero_prefix: "পবিত্র",
+                hero_ramadan: "রমজান",
+                hero_suffix: "ক্যালেন্ডার ২০২৬",
+                hero_desc: "ঢাকা ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।",
+                sehri_label: "সাহরী শেষ",
+                iftar_label: "ইফতার",
+                sehri_dua_title: "রোজার নিয়ত (সাহরী)",
+                sehri_dua_pronun: "\"নাওয়াইতু আন আছুমা গাদাম মিন শাহরি রমাদ্বানাল মুবারাক\"",
+                sehri_dua_meaning: "অর্থ: হে আল্লাহ! আমি আগামীকাল পবিত্র রমজানের রোজা রাখার নিয়ত করছি।",
+                iftar_dua_title: "ইফতারের দোয়া",
+                iftar_dua_pronun: "\"আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিঝক্বিকা আফতারতু\"",
+                iftar_dua_meaning: "অর্থ: হে আল্লাহ! আমি তোমারই জন্য রোজা রেখেছি এবং তোমারই দেওয়া রিজিক দ্বারা ইফতার করলাম।",
+                ashra_1_title: "রহমত",
+                ashra_1_subtitle: "প্রথম ১০ দিন | করুণা",
+                ashra_2_title: "মাগফিরাত",
+                ashra_2_subtitle: "দ্বিতীয় ১০ দিন | ক্ষমা",
+                ashra_3_title: "নাজাত",
+                ashra_3_subtitle: "তৃতীয় ১০ দিন | মুক্তি",
+                col_ramadan: "রমজান",
+                col_date: "তারিখ",
+                col_day: "বার",
+                col_sehri: "সেহরি",
+                col_iftar: "ইফতার",
+                warning_title: "সতর্কতা:",
+                warning_text: "সাহরীর শেষ সময়ের ৩ মিনিট আগে পানাহার বন্ধ করবেন এবং ইফতারের সময়ের ৩ মিনিট পর ইফতার করবেন। এখানে প্রদত্ত সময়সূচী সতর্কতামূলক।",
+                org_name: "নাগমুদ আদর্শ যুব ক্রীড়া সংঘ",
+                org_desc: "স্বেচ্ছাসেবী, অরাজনৈতিক সামাজিক সংগঠন।",
+                download_pdf: "ক্যালেন্ডার ডাউনলোড করুন",
+                footer_copy: "২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Digital Creative",
+                today_schedule: "আজকের সময়সূচী",
+                upcoming_ramadan: "আসন্ন রমজান",
+                ramadan_ended: "রমজান সমাপ্ত",
+                ramadan_text: " রমজান"
+            },
+            en: {
+                title: "Tohfaye Ramadan",
+                title_mobile: "Ramadan 2026",
+                hijri_year: "1447 Hijri",
+                welcome_ramadan: "Welcome Ramadan",
+                hero_prefix: "Holy",
+                hero_ramadan: "Ramadan",
+                hero_suffix: "Calendar 2026",
+                hero_desc: "Sehri and Iftar schedule for Dhaka and surrounding areas as per Islamic Foundation Bangladesh.",
+                sehri_label: "Sehri Ends",
+                iftar_label: "Iftar Time",
+                sehri_dua_title: "Intention for Fasting (Sehri)",
+                sehri_dua_pronun: "\"Nawaitu an asuma gadam min shahri ramadanal mubarak\"",
+                sehri_dua_meaning: "Meaning: O Allah! I intend to fast tomorrow for the holy month of Ramadan.",
+                iftar_dua_title: "Dua for Iftar",
+                iftar_dua_pronun: "\"Allahumma laka sumtu wa ala rizqika aftartu\"",
+                iftar_dua_meaning: "Meaning: O Allah! I fasted for You and I break my fast with Your sustenance.",
+                ashra_1_title: "Rahmat",
+                ashra_1_subtitle: "First 10 Days | Mercy",
+                ashra_2_title: "Maghfirat",
+                ashra_2_subtitle: "Second 10 Days | Forgiveness",
+                ashra_3_title: "Nazat",
+                ashra_3_subtitle: "Third 10 Days | Salvation",
+                col_ramadan: "Ramadan",
+                col_date: "Date",
+                col_day: "Day",
+                col_sehri: "Sehri",
+                col_iftar: "Iftar",
+                warning_title: "Warning:",
+                warning_text: "Stop eating 3 minutes before Sehri end time and break fast 3 minutes after Iftar time. This schedule is precautionary.",
+                org_name: "Nagmud Adarsha Jubo Krira Sangha",
+                org_desc: "Voluntary, non-political social organization.",
+                download_pdf: "Download Calendar Image",
+                footer_copy: "2026 Ramadan Calendar | Design by Digital Creative",
+                today_schedule: "Today's Schedule",
+                upcoming_ramadan: "Upcoming Ramadan",
+                ramadan_ended: "Ramadan Ended",
+                ramadan_text: " Ramadan"
+            }
+        };
+
+        // Number Converters
+        const bnToEnDigits = n => n.replace(/[০-৯]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d)); // Not strictly needed if we store raw data
+        const enToBnDigits = n => n.toString().replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]);
+        
+        // Data in raw format (Month 0-indexed)
+        const rawData = [
+            { r: 1, m: 1, d: 19, s: "05:04", i: "06:02" },
+            { r: 2, m: 1, d: 20, s: "05:03", i: "06:03" },
+            { r: 3, m: 1, d: 21, s: "05:02", i: "06:03" },
+            { r: 4, m: 1, d: 22, s: "05:01", i: "06:04" },
+            { r: 5, m: 1, d: 23, s: "05:00", i: "06:04" },
+            { r: 6, m: 1, d: 24, s: "04:59", i: "06:05" },
+            { r: 7, m: 1, d: 25, s: "04:58", i: "06:05" },
+            { r: 8, m: 1, d: 26, s: "04:57", i: "06:06" },
+            { r: 9, m: 1, d: 27, s: "04:56", i: "06:06" },
+            { r: 10, m: 1, d: 28, s: "04:55", i: "06:06" },
+            // March
+            { r: 11, m: 2, d: 1, s: "04:54", i: "06:07" },
+            { r: 12, m: 2, d: 2, s: "04:53", i: "06:07" },
+            { r: 13, m: 2, d: 3, s: "04:52", i: "06:08" },
+            { r: 14, m: 2, d: 4, s: "04:51", i: "06:08" },
+            { r: 15, m: 2, d: 5, s: "04:50", i: "06:08" },
+            { r: 16, m: 2, d: 6, s: "04:49", i: "06:09" },
+            { r: 17, m: 2, d: 7, s: "04:48", i: "06:09" },
+            { r: 18, m: 2, d: 8, s: "04:47", i: "06:10" },
+            { r: 19, m: 2, d: 9, s: "04:46", i: "06:10" },
+            { r: 20, m: 2, d: 10, s: "04:45", i: "06:10" },
+            { r: 21, m: 2, d: 11, s: "04:44", i: "06:11" },
+            { r: 22, m: 2, d: 12, s: "04:43", i: "06:11" },
+            { r: 23, m: 2, d: 13, s: "04:42", i: "06:11" },
+            { r: 24, m: 2, d: 14, s: "04:41", i: "06:12" },
+            { r: 25, m: 2, d: 15, s: "04:40", i: "06:12" },
+            { r: 26, m: 2, d: 16, s: "04:39", i: "06:13" },
+            { r: 27, m: 2, d: 17, s: "04:38", i: "06:13" },
+            { r: 28, m: 2, d: 18, s: "04:36", i: "06:14" },
+            { r: 29, m: 2, d: 19, s: "04:35", i: "06:14" },
+            { r: 30, m: 2, d: 20, s: "04:34", i: "06:15" },
+        ];
+
+        let currentLang = 'bn';
+
+        function formatTime(timeStr) {
+            if (currentLang === 'en') return timeStr;
+            const [h, m] = timeStr.split(':');
+            return enToBnDigits(h) + ':' + enToBnDigits(m);
+        }
+
+        function formatDate(m, d) {
+            const date = new Date(2026, m, d);
+            const options = { month: 'short', day: 'numeric' };
+            const locale = currentLang === 'bn' ? 'bn-BD' : 'en-US';
+            return date.toLocaleDateString(locale, options);
+        }
+
+        function formatDay(m, d) {
+            const date = new Date(2026, m, d);
+            const locale = currentLang === 'bn' ? 'bn-BD' : 'en-US';
+            const dayName = date.toLocaleDateString(locale, { weekday: 'short' });
+            return currentLang === 'bn' ? dayName + ":" : dayName;
+        }
+
+        function renderTables() {
+            const tables = {
+                rahmat: document.getElementById('rahmat-rows'),
+                maghfirat: document.getElementById('maghfirat-rows'),
+                nazat: document.getElementById('nazat-rows')
+            };
+
+            // Clear existing
+            Object.values(tables).forEach(el => el.innerHTML = '');
+
+            // Row Template
+            const createRow = (item, colorClass, textClass) => {
+                const ramadan = currentLang === 'bn' ? enToBnDigits(item.r.toString().padStart(2, '0')) : item.r.toString().padStart(2, '0');
+                const dateStr = formatDate(item.m, item.d);
+                const dayStr = formatDay(item.m, item.d);
+                const sehri = formatTime(item.s);
+                const iftar = formatTime(item.i);
+
+                return `
+                    <div class="grid grid-cols-5 gap-2 items-center text-center bg-white p-2.5 rounded-xl shadow-sm border border-slate-100 prayer-row text-sm">
+                        <div class="font-bold text-slate-700 bg-slate-100 w-7 h-7 mx-auto flex items-center justify-center rounded-full text-xs">${ramadan}</div>
+                        <div class="text-slate-600 text-xs">${dateStr}</div>
+                        <div class="text-slate-500 text-xs">${dayStr}</div>
+                        <div class="font-bold ${textClass} bg-${colorClass}-50 py-1 rounded-lg text-xs">${sehri}</div>
+                        <div class="font-bold text-slate-800 bg-gold-50 py-1 rounded-lg text-xs">${iftar}</div>
+                    </div>
+                `;
+            };
+
+            rawData.forEach(item => {
+                let container, color, text;
+                if (item.r <= 10) { 
+                    container = tables.rahmat; color = 'emerald'; text = 'text-emerald-700';
+                } else if (item.r <= 20) {
+                    container = tables.maghfirat; color = 'blue'; text = 'text-blue-700';
+                } else {
+                    container = tables.nazat; color = 'amber'; text = 'text-amber-700';
+                }
+                container.innerHTML += createRow(item, color, text);
+            });
+        }
+
+        function updateStaticText() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.textContent = translations[currentLang][key];
+                }
+            });
+            document.getElementById('lang-text').textContent = currentLang === 'bn' ? 'EN' : 'BN';
+        }
+
+        function updateLiveDate() {
+            const now = new Date();
+            const options = { day: 'numeric', month: 'long', weekday: 'long' };
+            const locale = currentLang === 'bn' ? 'bn-BD' : 'en-US';
+            const formattedDate = now.toLocaleDateString(locale, options);
+            document.getElementById('live-date').textContent = formattedDate;
+        }
+
+        function updateHighlight() {
+            const now = new Date();
+            const currentMonth = now.getMonth(); 
+            const currentDate = now.getDate();
+            
+            let todayData = rawData[0];
+            let statusKey = "today_schedule";
+            
+            const match = rawData.find(d => d.m === currentMonth && d.d === currentDate);
+            
+            if (match) {
+                todayData = match;
+            } else {
+                if (currentMonth < 1 || (currentMonth === 1 && currentDate < 19)) {
+                    statusKey = "upcoming_ramadan";
+                    todayData = rawData[0]; 
+                } else if (currentMonth > 2 || (currentMonth === 2 && currentDate > 20)) {
+                     statusKey = "ramadan_ended";
+                     todayData = rawData[29];
+                } else {
+                     statusKey = "today_schedule";
+                }
+            }
+
+            const t = translations[currentLang];
+            const rNum = currentLang === 'bn' ? enToBnDigits(todayData.r.toString().padStart(2, '0')) : todayData.r.toString().padStart(2, '0');
+            const dateStr = formatDate(todayData.m, todayData.d);
+            
+            document.getElementById('highlight-status').textContent = t[statusKey];
+            document.getElementById('highlight-ramadan').textContent = rNum + t.ramadan_text;
+            document.getElementById('highlight-date').textContent = dateStr + (currentLang === 'bn' ? ", ২০২৬" : ", 2026");
+            document.getElementById('highlight-sehri').textContent = formatTime(todayData.s);
+            document.getElementById('highlight-iftar').textContent = formatTime(todayData.i);
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'bn' ? 'en' : 'bn';
+            updateStaticText();
+            renderTables();
+            updateLiveDate();
+            updateHighlight();
+        }
+
+        function downloadImage(btn) {
+            // Element to download - Targeted ID
+            const element = document.getElementById('main-content');
+            
+            // Image handling logic
+            const logoImg = document.querySelector('img[alt="Logo"]');
+            const fallbackIcon = document.getElementById('fallback-logo');
+            
+            let originalDisplay = '';
+            
+            // Check if image is loaded properly
+            if (logoImg && (!logoImg.complete || logoImg.naturalWidth === 0)) {
+                // If broken, hide it so html2canvas doesn't crash
+                originalDisplay = logoImg.style.display;
+                logoImg.style.display = 'none';
+                if(fallbackIcon) fallbackIcon.style.display = 'flex';
+            }
+
+            // Hide button
+            btn.style.display = 'none';
+
+            // Generate Image
+            html2canvas(element, { 
+                scale: 2, 
+                useCORS: true,
+                backgroundColor: null, // Capture theme background or transparent
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Ramadan_Calendar_2026.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                btn.style.display = 'flex';
+                // Restore image state if changed
+                if (logoImg && originalDisplay !== '') {
+                    logoImg.style.display = originalDisplay;
+                }
+            }).catch(err => {
+                console.error("Image Generation Error:", err);
+                btn.style.display = 'flex';
+                if (logoImg && originalDisplay !== '') {
+                    logoImg.style.display = originalDisplay;
+                }
+                alert('Image download korte somoshsha hocche. Doyakore abar chesta korun.');
+            });
+        }
+
+        // Init
+        window.onload = function() {
+            updateStaticText();
+            renderTables();
+            updateLiveDate();
+            updateHighlight();
+        }
+    </script>
+
+</body>
+</html>
