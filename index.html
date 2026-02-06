@@ -343,8 +343,10 @@
                 <!-- Brand -->
                 <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
                      <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full p-1 flex items-center justify-center shadow-lg border-2 border-gold-400 overflow-hidden transform hover:scale-105 transition-transform duration-300 relative">
+                        <!-- IMPORTANT: Changed src to use a fallback if missing, preventing html2canvas error -->
                         <img src="1-01.png" alt="Logo" class="w-full h-full object-cover rounded-full" 
                              onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; document.getElementById('fallback-logo').style.display='flex';">
+                        <!-- Fallback Icon -->
                         <div id="fallback-logo" class="hidden absolute inset-0 flex items-center justify-center text-emerald-600 text-3xl">
                             <i class="fa-solid fa-users"></i>
                         </div>
@@ -355,7 +357,7 @@
                     </div>
                 </div>
 
-                <!-- Download Button -->
+                <!-- Download Button (Replaces Address) -->
                 <div class="text-center md:text-right space-y-2" data-html2canvas-ignore="true">
                     <button onclick="downloadImage(this)" class="bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-500 hover:to-gold-700 text-slate-900 font-bold py-2.5 px-6 rounded-xl text-xs md:text-sm flex items-center gap-2 transition-all shadow-lg mx-auto md:ml-auto transform hover:scale-105">
                         <i class="fa-solid fa-image"></i>
@@ -534,37 +536,37 @@
         
         // Data in raw format (Month 0-indexed)
         const rawData = [
-            { r: 1, m: 1, d: 19, s: "05:04", i: "06:02" },
-            { r: 2, m: 1, d: 20, s: "05:03", i: "06:03" },
-            { r: 3, m: 1, d: 21, s: "05:02", i: "06:03" },
-            { r: 4, m: 1, d: 22, s: "05:01", i: "06:04" },
-            { r: 5, m: 1, d: 23, s: "05:00", i: "06:04" },
-            { r: 6, m: 1, d: 24, s: "04:59", i: "06:05" },
-            { r: 7, m: 1, d: 25, s: "04:58", i: "06:05" },
-            { r: 8, m: 1, d: 26, s: "04:57", i: "06:06" },
-            { r: 9, m: 1, d: 27, s: "04:56", i: "06:06" },
-            { r: 10, m: 1, d: 28, s: "04:55", i: "06:06" },
+            { r: 1, m: 1, d: 19, s: "05:12", i: "05:58" },
+            { r: 2, m: 1, d: 20, s: "05:11", i: "05:59" },
+            { r: 3, m: 1, d: 21, s: "05:11", i: "05:59" },
+            { r: 4, m: 1, d: 22, s: "05:10", i: "06:00" },
+            { r: 5, m: 1, d: 23, s: "05:09", i: "06:00" },
+            { r: 6, m: 1, d: 24, s: "05:08", i: "06:00" },
+            { r: 7, m: 1, d: 25, s: "05:08", i: "06:01" },
+            { r: 8, m: 1, d: 26, s: "05:07", i: "06:01" },
+            { r: 9, m: 1, d: 27, s: "05:06", i: "06:02" },
+            { r: 10, m: 1, d: 28, s: "05:05", i: "06:02" },
             // March
-            { r: 11, m: 2, d: 1, s: "04:54", i: "06:07" },
-            { r: 12, m: 2, d: 2, s: "04:53", i: "06:07" },
-            { r: 13, m: 2, d: 3, s: "04:52", i: "06:08" },
-            { r: 14, m: 2, d: 4, s: "04:51", i: "06:08" },
-            { r: 15, m: 2, d: 5, s: "04:50", i: "06:08" },
-            { r: 16, m: 2, d: 6, s: "04:49", i: "06:09" },
-            { r: 17, m: 2, d: 7, s: "04:48", i: "06:09" },
-            { r: 18, m: 2, d: 8, s: "04:47", i: "06:10" },
-            { r: 19, m: 2, d: 9, s: "04:46", i: "06:10" },
-            { r: 20, m: 2, d: 10, s: "04:45", i: "06:10" },
-            { r: 21, m: 2, d: 11, s: "04:44", i: "06:11" },
-            { r: 22, m: 2, d: 12, s: "04:43", i: "06:11" },
-            { r: 23, m: 2, d: 13, s: "04:42", i: "06:11" },
-            { r: 24, m: 2, d: 14, s: "04:41", i: "06:12" },
-            { r: 25, m: 2, d: 15, s: "04:40", i: "06:12" },
-            { r: 26, m: 2, d: 16, s: "04:39", i: "06:13" },
-            { r: 27, m: 2, d: 17, s: "04:38", i: "06:13" },
-            { r: 28, m: 2, d: 18, s: "04:36", i: "06:14" },
-            { r: 29, m: 2, d: 19, s: "04:35", i: "06:14" },
-            { r: 30, m: 2, d: 20, s: "04:34", i: "06:15" },
+            { r: 11, m: 2, d: 1, s: "05:05", i: "06:03" },
+            { r: 12, m: 2, d: 2, s: "05:04", i: "06:03" },
+            { r: 13, m: 2, d: 3, s: "05:03", i: "06:04" },
+            { r: 14, m: 2, d: 4, s: "05:02", i: "06:04" },
+            { r: 15, m: 2, d: 5, s: "05:01", i: "06:05" },
+            { r: 16, m: 2, d: 6, s: "05:00", i: "06:05" },
+            { r: 17, m: 2, d: 7, s: "04:59", i: "06:06" },
+            { r: 18, m: 2, d: 8, s: "04:58", i: "06:06" },
+            { r: 19, m: 2, d: 9, s: "04:57", i: "06:07" },
+            { r: 20, m: 2, d: 10, s: "04:57", i: "06:07" },
+            { r: 21, m: 2, d: 11, s: "04:56", i: "06:07" },
+            { r: 22, m: 2, d: 12, s: "04:55", i: "06:08" },
+            { r: 23, m: 2, d: 13, s: "04:54", i: "06:08" },
+            { r: 24, m: 2, d: 14, s: "04:53", i: "06:09" },
+            { r: 25, m: 2, d: 15, s: "04:52", i: "06:09" },
+            { r: 26, m: 2, d: 16, s: "04:51", i: "06:10" },
+            { r: 27, m: 2, d: 17, s: "04:50", i: "06:10" },
+            { r: 28, m: 2, d: 18, s: "04:49", i: "06:10" },
+            { r: 29, m: 2, d: 19, s: "04:48", i: "06:11" },
+            { r: 30, m: 2, d: 20, s: "04:47", i: "06:11" },
         ];
 
         let currentLang = 'bn';
@@ -610,7 +612,7 @@
             placeholder.value = "";
             placeholder.textContent = translations[currentLang].select_placeholder;
             placeholder.disabled = true;
-            placeholder.selected = true; // Select by default so text appears in box
+            placeholder.selected = true; 
             select.appendChild(placeholder);
 
             // Sort keys
