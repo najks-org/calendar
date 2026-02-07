@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>তোহফায়ে রমাদান - Ramadan Calendar 2026</title>
+    <title>তোহফায়ে রমাদান - Ramadan Calendar 2026</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- HTML2Canvas Library for Image Generation -->
@@ -70,11 +70,13 @@
             border-left: 3px solid #d97706;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        /* Responsive text sizing for the table */
+        .col-header {
+            font-size: 0.65rem;
         }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+        @media (min-width: 640px) {
+            .col-header { font-size: 0.8rem; }
+        }
         
         select {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
@@ -97,7 +99,7 @@
                 <div class="w-8 h-8 rounded-full bg-gold-100 flex items-center justify-center text-gold-600">
                     <i class="fa-solid fa-moon"></i>
                 </div>
-                <span class="font-serif font-bold text-lg text-slate-700 hidden md:block" data-i18n="title">তোহফায়ে রমাদান</span>
+                <span class="font-serif font-bold text-lg text-slate-700 hidden md:block" data-i18n="title">তোহফায়ে রমাদান</span>
                 <span class="font-serif font-bold text-base text-slate-700 block md:hidden" data-i18n="title_mobile">রমাদান ২০২৬</span>
             </div>
             
@@ -136,13 +138,13 @@
                         <span data-i18n="hero_prefix">পবিত্র</span> <span class="text-gold-400" data-i18n="hero_ramadan">রমজান</span><br><span data-i18n="hero_suffix">ক্যালেন্ডার ২০২৬</span>
                     </h1>
                     <p class="text-emerald-100/80 max-w-md text-xs md:text-base leading-relaxed mx-auto md:mx-0">
-                        <span id="current-district-name" class="font-bold text-yellow-300">ঢাকা</span> <span data-i18n="hero_desc_suffix">ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।</span>
+                        <span id="current-district-name" class="font-bold text-yellow-300">ঢাকা</span> <span data-i18n="hero_desc_suffix">ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।</span>
                     </p>
                 </div>
 
                 <!-- Highlight Card -->
                 <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 w-full md:w-80 flex flex-col items-center shadow-lg animate-float">
-                    <div id="highlight-status" class="text-gold-300 text-sm font-medium mb-1">আজকের সময়সূচী</div>
+                    <div id="highlight-status" class="text-gold-300 text-sm font-medium mb-1">আজকের সময়সূচী</div>
                     <div id="highlight-ramadan" class="text-3xl font-bold font-serif mb-2">০১ রমজান</div>
                     <div id="highlight-date" class="text-emerald-100/70 text-xs mb-4">১৯ ফেব্রুয়ারি, ২০২৬</div>
 
@@ -170,12 +172,12 @@
                 </div>
                 <h3 class="text-emerald-700 font-bold text-lg mb-4 flex items-center gap-2">
                     <span class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600"><i class="fa-solid fa-book-open"></i></span>
-                    <span data-i18n="sehri_dua_title">রোজার নিয়ত (সাহরী)</span>
+                    <span data-i18n="sehri_dua_title">রোজার নিয়ত (সাহরী)</span>
                 </h3>
                 <div class="bg-emerald-50/50 rounded-xl p-4 text-center border border-emerald-100">
-                    <p class="font-arabic text-xl md:text-3xl leading-relaxed text-slate-800 mb-2" dir="rtl">نَوَيْتُ اَنْ اُصُوْمَ غَدًا مِّنْ شَهْرِ رَمْضَانَ الْمُبَارَكِ</p>
-                    <p class="text-xs md:text-sm text-slate-500 italic" data-i18n="sehri_dua_pronun">"নাওয়াইতু আন আছুমা গাদাম মিন শাহরি রমাদ্বানাল মুবারাক"</p>
-                    <p class="text-xs text-slate-400 mt-1" data-i18n="sehri_dua_meaning">অর্থ: হে আল্লাহ! আমি আগামীকাল পবিত্র রমজানের রোজা রাখার নিয়ত করছি।</p>
+                    <p class="font-arabic text-xl md:text-3xl leading-relaxed text-slate-800 mb-2" dir="rtl">نَوَيْتُ اَنْ اُصُوْمَ غَدًا مِّنْ شَهْرِ رَمْضَانَ الْمُبَارَكِ</p>
+                    <p class="text-xs md:text-sm text-slate-500 italic" data-i18n="sehri_dua_pronun">"নাওয়াইতু আন আছুমা গাদাম মিন শাহরি রমাদ্বানাল মুবারাক"</p>
+                    <p class="text-xs text-slate-400 mt-1" data-i18n="sehri_dua_meaning">অর্থ: হে আল্লাহ! আমি আগামীকাল পবিত্র রমজানের রোজা রাখার নিয়ত করছি।</p>
                 </div>
             </div>
 
@@ -185,12 +187,12 @@
                 </div>
                 <h3 class="text-gold-700 font-bold text-lg mb-4 flex items-center gap-2">
                     <span class="w-8 h-8 rounded-lg bg-gold-100 flex items-center justify-center text-gold-600"><i class="fa-solid fa-hands-holding-circle"></i></span>
-                    <span data-i18n="iftar_dua_title">ইফতারের দোয়া</span>
+                    <span data-i18n="iftar_dua_title">ইফতারের দোয়া</span>
                 </h3>
                 <div class="bg-gold-50/50 rounded-xl p-4 text-center border border-gold-100">
-                    <p class="font-arabic text-xl md:text-3xl leading-relaxed text-slate-800 mb-2" dir="rtl">اَللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ اَفْطَرْتُ</p>
-                    <p class="text-xs md:text-sm text-slate-500 italic" data-i18n="iftar_dua_pronun">"আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিঝক্বিকা আফতারতু"</p>
-                     <p class="text-xs text-slate-400 mt-1" data-i18n="iftar_dua_meaning">অর্থ: হে আল্লাহ! আমি তোমারই জন্য রোজা রেখেছি এবং তোমারই দেওয়া রিজিক দ্বারা ইফতার করলাম।</p>
+                    <p class="font-arabic text-xl md:text-3xl leading-relaxed text-slate-800 mb-2" dir="rtl">اَللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ اَفْطَرْتُ</p>
+                    <p class="text-xs md:text-sm text-slate-500 italic" data-i18n="iftar_dua_pronun">"আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিঝক্বিকা আফতারতু"</p>
+                     <p class="text-xs text-slate-400 mt-1" data-i18n="iftar_dua_meaning">অর্থ: হে আল্লাহ! আমি তোমারই জন্য রোজা রেখেছি এবং তোমারই দেওয়া রিজিক দ্বারা ইফতার করলাম।</p>
                 </div>
             </div>
         </section>
@@ -227,10 +229,15 @@
                     </div>
                 </div>
             </div>
+            <!-- Error Message Div (Hidden by default) -->
+            <div id="error-message" class="hidden mt-4 p-4 bg-red-100 border border-red-400 text-red-700 text-center rounded-xl font-bold animate-pulse">
+                এই জেলার সময় PDF-এ পাওয়া যায়নি
+            </div>
         </section>
 
         <!-- Main Calendar Section -->
-        <section class="space-y-8">
+        <section id="calendar-section" class="space-y-8">
+            <!-- Headers for Mobile -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
                 <!-- Ashra 1: Rahmat -->
@@ -246,7 +253,7 @@
                     </div>
                     <div class="p-2 md:p-4 bg-slate-50 overflow-x-auto flex-grow">
                         <div class="min-w-[340px] md:min-w-full">
-                            <div class="grid grid-cols-5 gap-1 mb-3 text-center text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
+                            <div class="grid grid-cols-5 gap-1 mb-3 text-center col-header font-bold text-slate-500 uppercase tracking-wider px-1">
                                 <div data-i18n="col_ramadan">রমজান</div>
                                 <div data-i18n="col_date">তারিখ</div>
                                 <div class="text-emerald-600" data-i18n="col_sehri">সাহরীর শেষ</div>
@@ -265,13 +272,13 @@
                             <h2 class="text-lg md:text-xl font-serif font-bold flex items-center gap-2">
                                 <i class="fa-solid fa-hands-praying opacity-70"></i> <span data-i18n="ashra_2_title">মাগফিরাত</span>
                             </h2>
-                            <p class="text-blue-100 text-[10px] md:text-xs tracking-wide opacity-80" data-i18n="ashra_2_subtitle">দ্বিতীয় ১০ দিন | ক্ষমা</p>
+                            <p class="text-blue-100 text-[10px] md:text-xs tracking-wide opacity-80" data-i18n="ashra_2_subtitle">দ্বিতীয় ১০ দিন | ক্ষমা</p>
                         </div>
                         <span class="text-3xl font-bold opacity-10">02</span>
                     </div>
                     <div class="p-2 md:p-4 bg-slate-50 overflow-x-auto flex-grow">
                         <div class="min-w-[340px] md:min-w-full">
-                            <div class="grid grid-cols-5 gap-1 mb-3 text-center text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
+                            <div class="grid grid-cols-5 gap-1 mb-3 text-center col-header font-bold text-slate-500 uppercase tracking-wider px-1">
                                 <div data-i18n="col_ramadan">রমজান</div>
                                 <div data-i18n="col_date">তারিখ</div>
                                 <div class="text-blue-600" data-i18n="col_sehri">সাহরীর শেষ</div>
@@ -296,7 +303,7 @@
                     </div>
                     <div class="p-2 md:p-4 bg-slate-50 overflow-x-auto flex-grow">
                          <div class="min-w-[340px] md:min-w-full">
-                             <div class="grid grid-cols-5 gap-1 mb-3 text-center text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
+                             <div class="grid grid-cols-5 gap-1 mb-3 text-center col-header font-bold text-slate-500 uppercase tracking-wider px-1">
                                 <div data-i18n="col_ramadan">রমজান</div>
                                 <div data-i18n="col_date">তারিখ</div>
                                 <div class="text-amber-700" data-i18n="col_sehri">সাহরীর শেষ</div>
@@ -314,7 +321,7 @@
             <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg flex items-start gap-3">
                 <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1"></i>
                 <div class="text-xs md:text-sm text-red-700">
-                    <strong data-i18n="warning_title">সতর্কতা:</strong> <span data-i18n="warning_text">সাহরীর শেষ সময়ের ৩ মিনিট পর ফজরের আযান অনুষ্ঠিত হবে। সাহরীর শেষ সময়ের ৩ মিনিট আগে পানাহার বন্ধ করবেন।</span>
+                    <strong data-i18n="warning_title">সতর্কতা:</strong> <span data-i18n="warning_text">সাহরীর শেষ সময়ের ৩ মিনিট পর ফজরের আযান অনুষ্ঠিত হবে। সাহরীর শেষ সময়ের ৩ মিনিট আগে পানাহার বন্ধ করবেন।</span>
                 </div>
             </div>
 
@@ -331,6 +338,7 @@
                      <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full p-1 flex items-center justify-center shadow-lg border-2 border-gold-400 overflow-hidden transform hover:scale-105 transition-transform duration-300 relative">
                         <img src="1-01.png" alt="Logo" class="w-full h-full object-cover rounded-full" 
                              onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; document.getElementById('fallback-logo').style.display='flex';">
+                        <!-- Fallback Icon -->
                         <div id="fallback-logo" class="hidden absolute inset-0 flex items-center justify-center text-emerald-600 text-3xl">
                             <i class="fa-solid fa-users"></i>
                         </div>
@@ -351,7 +359,7 @@
             </div>
             
             <div class="mt-8 pt-6 border-t border-slate-700/50 text-center text-xs text-slate-500">
-                &copy; <span data-i18n="footer_copy">২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Digital Creative</span>
+                &copy; <span data-i18n="footer_copy">২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Digital Creative</span>
             </div>
         </footer>
 
@@ -365,26 +373,26 @@
         // Language Data
         const translations = {
             bn: {
-                title: "তোহফায়ে রমাদান",
+                title: "তোহফায়ে রমাদান",
                 title_mobile: "রমাদান ২০২৬",
                 hijri_year: "১৪৪৭ হিজরী",
                 welcome_ramadan: "স্বাগতম মাহে রমজান। সবাইকে 'নাগমুদ আদর্শ যুব ক্রীড়া সংঘ' এর পক্ষ থেকে জানাই পবিত্র রমজানের শুভেচ্ছা ও অভিনন্দন।",
                 hero_prefix: "পবিত্র",
                 hero_ramadan: "রমজান",
                 hero_suffix: "ক্যালেন্ডার ২০২৬",
-                hero_desc_suffix: "ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।",
+                hero_desc_suffix: "ও পার্শ্ববর্তী এলাকার জন্য ইসলামিক ফাউন্ডেশন বাংলাদেশ কর্তৃক প্রদত্ত সাহরী ও ইফতারের সঠিক সময়সূচী।",
                 sehri_label: "সাহরী শেষ",
                 iftar_label: "ইফতার",
-                sehri_dua_title: "রোজার নিয়ত (সাহরী)",
-                sehri_dua_pronun: "\"নাওয়াইতু আন আছুমা গাদাম মিন শাহরি রমাদ্বানাল মুবারাক\"",
-                sehri_dua_meaning: "অর্থ: হে আল্লাহ! আমি আগামীকাল পবিত্র রমজানের রোজা রাখার নিয়ত করছি।",
-                iftar_dua_title: "ইফতারের দোয়া",
-                iftar_dua_pronun: "\"আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিঝক্বিকা আফতারতু\"",
-                iftar_dua_meaning: "অর্থ: হে আল্লাহ! আমি তোমারই জন্য রোজা রেখেছি এবং তোমারই দেওয়া রিজিক দ্বারা ইফতার করলাম।",
+                sehri_dua_title: "রোজার নিয়ত (সাহরী)",
+                sehri_dua_pronun: "\"নাওয়াইতু আন আছুমা গাদাম মিন শাহরি রমাদ্বানাল মুবারাক\"",
+                sehri_dua_meaning: "অর্থ: হে আল্লাহ! আমি আগামীকাল পবিত্র রমজানের রোজা রাখার নিয়ত করছি।",
+                iftar_dua_title: "ইফতারের দোয়া",
+                iftar_dua_pronun: "\"আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিঝক্বিকা আফতারতু\"",
+                iftar_dua_meaning: "অর্থ: হে আল্লাহ! আমি তোমারই জন্য রোজা রেখেছি এবং তোমারই দেওয়া রিজিক দ্বারা ইফতার করলাম।",
                 ashra_1_title: "রহমত",
                 ashra_1_subtitle: "প্রথম ১০ দিন | করুণা",
                 ashra_2_title: "মাগফিরাত",
-                ashra_2_subtitle: "দ্বিতীয় ১০ দিন | ক্ষমা",
+                ashra_2_subtitle: "দ্বিতীয় ১০ দিন | ক্ষমা",
                 ashra_3_title: "নাজাত",
                 ashra_3_subtitle: "তৃতীয় ১০ দিন | মুক্তি",
                 col_ramadan: "রমজান",
@@ -393,12 +401,12 @@
                 col_fajr: "ফজরের আযান",
                 col_iftar: "ইফতার",
                 warning_title: "সতর্কতা:",
-                warning_text: "সাহরীর শেষ সময়ের ৩ মিনিট পর ফজরের আযান অনুষ্ঠিত হবে। সাহরীর শেষ সময়ের ৩ মিনিট আগে পানাহার বন্ধ করবেন।",
+                warning_text: "সাহরীর শেষ সময়ের ৩ মিনিট পর ফজরের আযান অনুষ্ঠিত হবে। সাহরীর শেষ সময়ের ৩ মিনিট আগে পানাহার বন্ধ করবেন।",
                 org_name: "নাগমুদ আদর্শ যুব ক্রীড়া সংঘ",
                 org_desc: "স্বেচ্ছাসেবী, অরাজনৈতিক সামাজিক সংগঠন।",
                 download_pdf: "ক্যালেন্ডার ডাউনলোড করুন",
-                footer_copy: "২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Digital Creative",
-                today_schedule: "আজকের সময়সূচী",
+                footer_copy: "২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Digital Creative",
+                today_schedule: "আজকের সময়সূচী",
                 upcoming_ramadan: "আসন্ন রমজান",
                 ramadan_ended: "রমজান সমাপ্ত",
                 ramadan_text: " রমজান",
@@ -456,118 +464,136 @@
             }
         };
 
-        // Data Hierarchy
+        // Data Hierarchy (Updated with complete list from React App)
         const divisions = {
-            "ঢাকা": ["ঢাকা", "গাজীপুর", "মানিকগঞ্জ", "মুন্সীগঞ্জ", "নারায়ণগঞ্জ", "নরসিংদী", "ফরিদপুর", "গোপালগঞ্জ", "মাদারীপুর", "রাজবাড়ী", "শরীয়তপুর", "কিশোরগঞ্জ", "টাঙ্গাইল"],
-            "চট্টগ্রাম": ["চট্টগ্রাম", "কক্সবাজার", "রাঙ্গামাটি", "বান্দরবান", "খাগড়াছড়ি", "ফেনী", "নোয়াখালী", "লক্ষ্মীপুর", "কুমিল্লা", "ব্রাহ্মণবাড়িয়া", "চাঁদপুর"],
-            "রাজশাহী": ["রাজশাহী", "নওগাঁ", "নাটোর", "চাঁপাইনবাবগঞ্জ", "পাবনা", "সিরাজগঞ্জ", "বগুড়া", "জয়পুরহাট"],
-            "খুলনা": ["খুলনা", "বাগেরহাট", "সাতক্ষীরা", "যশোর", "মাগুরা", "নড়াইল", "ঝিনাইদহ", "চুয়াডাঙ্গা", "কুষ্টিয়া", "মেহেরপুর"],
-            "বরিশাল": ["বরিশাল", "ঝালকাঠি", "পিরোজপুর", "ভোলা", "পটুয়াখালী", "বরগুনা"],
+            "ঢাকা": ["ঢাকা", "গাজিপুর", "নারায়ণগঞ্জ", "মুন্সিগঞ্জ", "মানিকগঞ্জ", "নরসিংদী", "কিশোরগঞ্জ", "ফরিদপুর", "টাঙ্গাইল", "শরীয়তপুর", "মাদারীপুর", "গোপালগঞ্জ", "রাজবাড়ি"],
+            "চট্টগ্রাম": ["চট্টগ্রাম", "কক্সবাজার", "কুমিল্লা", "ব্রাহ্মণবাড়িয়া", "চাঁদপুর", "নোয়াখালী", "ফেনী", "লক্ষ্মীপুর", "রাঙ্গামাটি", "বান্দরবান", "খাগড়াছড়ি"],
+            "রাজশাহী": ["রাজশাহী", "পাবনা", "সিরাজগঞ্জ", "বগুড়া", "নাটোর", "নওগাঁ", "চাঁপাইনবাবগঞ্জ", "জয়পুরহাট"],
+            "খুলনা": ["খুলনা", "যশোর", "সাতক্ষীরা", "মেহেরপুর", "চুয়াডাঙ্গা", "কুষ্টিয়া", "মাগুরা", "নড়াইল", "বাগেরহাট", "ঝিনাইদহ"],
+            "বরিশাল": ["বরিশাল", "পটুয়াখালী", "ভোলা", "পিরোজপুর", "বরগুনা", "ঝালকাঠি"],
             "সিলেট": ["সিলেট", "মৌলভীবাজার", "হবিগঞ্জ", "সুনামগঞ্জ"],
-            "রংপুর": ["রংপুর", "গাইবান্ধা", "কুড়িগ্রাম", "নীলফামারী", "লালমনিরহাট", "দিনাজপুর", "ঠাকুরগাঁও", "পঞ্চগড়"],
+            "রংপুর": ["রংপুর", "দিনাজপুর", "পঞ্চগড়", "ঠাকুরগাঁও", "গাইবান্ধা", "কুড়িগ্রাম", "নীলফামারী", "লালমনিরহাট"],
             "ময়মনসিংহ": ["ময়মনসিংহ", "জামালপুর", "নেত্রকোনা", "শেরপুর"]
         };
 
+        // Offsets based on Islamic Foundation - Sehri, Iftar (From React App)
+        // Format: { offset: [SehriOffset, IftarOffset], en: "English Name" }
         const districtData = {
+            // ঢাকা বিভাগ
             "ঢাকা": { offset: [0, 0], en: "Dhaka" },
-            "গাজীপুর": { offset: [0, 0], en: "Gazipur" },
-            "মানিকগঞ্জ": { offset: [+1, +1], en: "Manikganj" },
-            "মুন্সীগঞ্জ": { offset: [-1, 0], en: "Munshiganj" },
-            "নারায়ণগঞ্জ": { offset: [-1, -1], en: "Narayanganj" },
-            "নরসিংদী": { offset: [-2, -1], en: "Narsingdi" },
-            "ফরিদপুর": { offset: [+2, +2], en: "Faridpur" },
-            "গোপালগঞ্জ": { offset: [+2, +3], en: "Gopalganj" },
-            "মাদারীপুর": { offset: [+1, +1], en: "Madaripur" },
-            "রাজবাড়ী": { offset: [+3, +3], en: "Rajbari" },
-            "শরীয়তপুর": { offset: [+1, +1], en: "Shariatpur" },
-            "কিশোরগঞ্জ": { offset: [-2, -2], en: "Kishoreganj" },
-            "টাঙ্গাইল": { offset: [+2, +1], en: "Tangail" },
-            "চট্টগ্রাম": { offset: [-5, -5], en: "Chattogram" },
-            "বান্দরবান": { offset: [-7, -7], en: "Bandarban" },
+            "গাজিপুর": { offset: [-1, -1], en: "Gazipur" },
+            "নারায়ণগঞ্জ": { offset: [-1, -2], en: "Narayanganj" },
+            "মুন্সিগঞ্জ": { offset: [-1, -1], en: "Munshiganj" },
+            "মানিকগঞ্জ": { offset: [1, 1], en: "Manikganj" },
+            "নরসিংদী": { offset: [-2, -3], en: "Narsingdi" },
+            "কিশোরগঞ্জ": { offset: [-3, -3], en: "Kishoreganj" },
+            "ফরিদপুর": { offset: [1, 2], en: "Faridpur" },
+            "টাঙ্গাইল": { offset: [1, 0], en: "Tangail" },
+            "শরীয়তপুর": { offset: [-1, -1], en: "Shariatpur" },
+            "মাদারীপুর": { offset: [0, 1], en: "Madaripur" },
+            "গোপালগঞ্জ": { offset: [1, 2], en: "Gopalganj" },
+            "রাজবাড়ি": { offset: [3, 3], en: "Rajbari" },
+
+            // চট্টগ্রাম বিভাগ
+            "চট্টগ্রাম": { offset: [-7, -5], en: "Chattogram" },
+            "কক্সবাজার": { offset: [-9, -6], en: "Cox's Bazar" },
+            "কুমিল্লা": { offset: [-4, -3], en: "Cumilla" },
             "ব্রাহ্মণবাড়িয়া": { offset: [-3, -3], en: "Brahmanbaria" },
-            "চাঁদপুর": { offset: [-2, -1], en: "Chandpur" },
-            "কুমিল্লা": { offset: [-3, -3], en: "Cumilla" },
-            "কক্সবাজার": { offset: [-6, -6], en: "Cox's Bazar" },
-            "ফেনী": { offset: [-4, -4], en: "Feni" },
-            "খাগড়াছড়ি": { offset: [-6, -6], en: "Khagrachhari" },
-            "লক্ষ্মীপুর": { offset: [-2, -1], en: "Lakshmipur" },
-            "নোয়াখালী": { offset: [-3, -2], en: "Noakhali" },
-            "রাঙ্গামাটি": { offset: [-6, -6], en: "Rangamati" },
+            "চাঁদপুর": { offset: [-2, -2], en: "Chandpur" },
+            "নোয়াখালী": { offset: [-4, -3], en: "Noakhali" },
+            "ফেনী": { offset: [-5, -4], en: "Feni" },
+            "লক্ষ্মীপুর": { offset: [-2, -2], en: "Lakshmipur" },
+            "রাঙ্গামাটি": { offset: [-9, -7], en: "Rangamati" },
+            "বান্দরবান": { offset: [-10, -7], en: "Bandarban" },
+            "খাগড়াছড়ি": { offset: [-7, -6], en: "Khagrachhari" },
+
+            // রাজশাহী বিভাগ
+            "রাজশাহী": { offset: [6, 6], en: "Rajshahi" },
+            "পাবনা": { offset: [3, 3], en: "Pabna" },
+            "সিরাজগঞ্জ": { offset: [3, 2], en: "Sirajganj" },
+            "বগুড়া": { offset: [3, 3], en: "Bogura" },
+            "নাটোর": { offset: [5, 4], en: "Natore" },
+            "নওগাঁ": { offset: [6, 5], en: "Naogaon" },
+            "চাঁপাইনবাবগঞ্জ": { offset: [8, 7], en: "Chapainawabganj" },
+            "জয়পুরহাট": { offset: [5, 3], en: "Joypurhat" },
+
+            // খুলনা বিভাগ
+            "খুলনা": { offset: [3, 4], en: "Khulna" },
+            "যশোর": { offset: [4, 5], en: "Jashore" },
+            "সাতক্ষীরা": { offset: [4, 5], en: "Satkhira" },
+            "মেহেরপুর": { offset: [7, 6], en: "Meherpur" },
+            "চুয়াডাঙ্গা": { offset: [6, 5], en: "Chuadanga" },
+            "কুষ্টিয়া": { offset: [5, 5], en: "Kushtia" },
+            "মাগুরা": { offset: [3, 3], en: "Magura" },
+            "নড়াইল": { offset: [3, 3], en: "Narail" },
+            "বাগেরহাট": { offset: [2, 3], en: "Bagerhat" },
+            "ঝিনাইদহ": { offset: [4, 5], en: "Jhenaidah" },
+
+            // বরিশাল বিভাগ
+            "বরিশাল": { offset: [-1, 1], en: "Barishal" },
+            "পটুয়াখালী": { offset: [-1, 1], en: "Patuakhali" },
+            "ভোলা": { offset: [-3, -1], en: "Bhola" },
+            "পিরোজপুর": { offset: [1, 1], en: "Pirojpur" },
+            "বরগুনা": { offset: [0, 2], en: "Barguna" },
+            "ঝালকাঠি": { offset: [0, 1], en: "Jhalakathi" },
+
+            // সিলেট বিভাগ
             "সিলেট": { offset: [-8, -8], en: "Sylhet" },
-            "হবিগঞ্জ": { offset: [-6, -6], en: "Habiganj" },
-            "মৌলভীবাজার": { offset: [-7, -8], en: "Moulvibazar" },
-            "সুনামগঞ্জ": { offset: [-7, -8], en: "Sunamganj" },
-            "খুলনা": { offset: [+3, +4], en: "Khulna" },
-            "বাগেরহাট": { offset: [+2, +3], en: "Bagerhat" },
-            "চুয়াডাঙ্গা": { offset: [+6, +6], en: "Chuadanga" },
-            "যশোর": { offset: [+5, +5], en: "Jashore" },
-            "ঝিনাইদহ": { offset: [+4, +5], en: "Jhenaidah" },
-            "কুষ্টিয়া": { offset: [+5, +5], en: "Kushtia" },
-            "মাগুরা": { offset: [+3, +4], en: "Magura" },
-            "মেহেরপুর": { offset: [+7, +7], en: "Meherpur" },
-            "নড়াইল": { offset: [+3, +4], en: "Narail" },
-            "সাতক্ষীরা": { offset: [+5, +6], en: "Satkhira" },
-            "বরিশাল": { offset: [+1, +1], en: "Barishal" },
-            "বরগুনা": { offset: [+1, +2], en: "Barguna" },
-            "ভোলা": { offset: [-1, 0], en: "Bhola" },
-            "ঝালকাঠি": { offset: [+1, +2], en: "Jhalakathi" },
-            "পটুয়াখালী": { offset: [0, +1], en: "Patuakhali" },
-            "পিরোজপুর": { offset: [+2, +2], en: "Pirojpur" },
-            "রাজশাহী": { offset: [+6, +6], en: "Rajshahi" },
-            "বগুড়া": { offset: [+4, +4], en: "Bogura" },
-            "চাঁপাইনবাবগঞ্জ": { offset: [+8, +8], en: "Chapainawabganj" },
-            "জয়পুরহাট": { offset: [+6, +5], en: "Joypurhat" },
-            "নওগাঁ": { offset: [+6, +6], en: "Naogaon" },
-            "নাটোর": { offset: [+5, +5], en: "Natore" },
-            "পাবনা": { offset: [+4, +4], en: "Pabna" },
-            "সিরাজগঞ্জ": { offset: [+3, +3], en: "Sirajganj" },
-            "রংপুর": { offset: [+6, +3], en: "Rangpur" },
-            "দিনাজপুর": { offset: [+8, +6], en: "Dinajpur" },
-            "গাইবান্ধা": { offset: [+5, +3], en: "Gaibandha" },
-            "কুড়িগ্রাম": { offset: [+5, +1], en: "Kurigram" },
-            "লালমনিরহাট": { offset: [+6, +2], en: "Lalmonirhat" },
-            "নীলফামারী": { offset: [+7, +4], en: "Nilphamari" },
-            "পঞ্চগড়": { offset: [+10, +6], en: "Panchagarh" },
-            "ঠাকুরগাঁও": { offset: [+9, +6], en: "Thakurgaon" },
-            "ময়মনসিংহ": { offset: [+1, -1], en: "Mymensingh" },
-            "জামালপুর": { offset: [+3, 0], en: "Jamalpur" },
-            "নেত্রকোনা": { offset: [0, -2], en: "Netrokona" },
-            "শেরপুর": { offset: [+2, 0], en: "Sherpur" }
+            "মৌলভীবাজার": { offset: [-7, -7], en: "Moulvibazar" },
+            "হবিগঞ্জ": { offset: [-4, -5], en: "Habiganj" },
+            "সুনামগঞ্জ": { offset: [-4, -5], en: "Sunamganj" },
+
+            // রংপুর বিভাগ
+            "রংপুর": { offset: [5, 2], en: "Rangpur" },
+            "দিনাজপুর": { offset: [5, 4], en: "Dinajpur" },
+            "পঞ্চগড়": { offset: [8, 4], en: "Panchagarh" },
+            "ঠাকুরগাঁও": { offset: [8, 6], en: "Thakurgaon" },
+            "গাইবান্ধা": { offset: [4, 2], en: "Gaibandha" },
+            "কুড়িগ্রাম": { offset: [3, 0], en: "Kurigram" },
+            "নীলফামারী": { offset: [6, 3], en: "Nilphamari" },
+            "লালমনিরহাট": { offset: [4, 2], en: "Lalmonirhat" },
+
+            // ময়মনসিংহ বিভাগ
+            "ময়মনসিংহ": { offset: [-1, -1], en: "Mymensingh" },
+            "জামালপুর": { offset: [2, 0], en: "Jamalpur" },
+            "নেত্রকোনা": { offset: [-3, -3], en: "Netrokona" },
+            "শেরপুর": { offset: [1, -1], en: "Sherpur" }
         };
 
-        // Raw Dhaka Base Data (From Dhaka PDF)
+        // Raw Dhaka Base Data (Updated from React App's dhakaSchedule)
+        // r: Ramadan, m: Month (1=Feb, 2=Mar), d: Day, s: Sehri, f: Fajr, i: Iftar
         const rawData = [
-            { r: 1, m: 1, d: 19, s: "05:12", i: "05:58" },
-            { r: 2, m: 1, d: 20, s: "05:11", i: "05:58" },
-            { r: 3, m: 1, d: 21, s: "05:11", i: "05:59" },
-            { r: 4, m: 1, d: 22, s: "05:10", i: "05:59" },
-            { r: 5, m: 1, d: 23, s: "05:09", i: "06:00" },
-            { r: 6, m: 1, d: 24, s: "05:08", i: "06:00" },
-            { r: 7, m: 1, d: 25, s: "05:08", i: "06:01" },
-            { r: 8, m: 1, d: 26, s: "05:07", i: "06:01" },
-            { r: 9, m: 1, d: 27, s: "05:06", i: "06:02" },
-            { r: 10, m: 1, d: 28, s: "05:05", i: "06:02" },
-            // March (Estimated based on trend from PDF start)
-            { r: 11, m: 2, d: 1, s: "05:05", i: "06:03" },
-            { r: 12, m: 2, d: 2, s: "05:04", i: "06:03" },
-            { r: 13, m: 2, d: 3, s: "05:03", i: "06:04" },
-            { r: 14, m: 2, d: 4, s: "05:02", i: "06:04" },
-            { r: 15, m: 2, d: 5, s: "05:01", i: "06:05" },
-            { r: 16, m: 2, d: 6, s: "05:00", i: "06:05" },
-            { r: 17, m: 2, d: 7, s: "04:59", i: "06:06" },
-            { r: 18, m: 2, d: 8, s: "04:58", i: "06:06" },
-            { r: 19, m: 2, d: 9, s: "04:57", i: "06:07" },
-            { r: 20, m: 2, d: 10, s: "04:57", i: "06:07" },
-            { r: 21, m: 2, d: 11, s: "04:56", i: "06:07" },
-            { r: 22, m: 2, d: 12, s: "04:55", i: "06:08" },
-            { r: 23, m: 2, d: 13, s: "04:54", i: "06:08" },
-            { r: 24, m: 2, d: 14, s: "04:53", i: "06:09" },
-            { r: 25, m: 2, d: 15, s: "04:52", i: "06:09" },
-            { r: 26, m: 2, d: 16, s: "04:51", i: "06:10" },
-            { r: 27, m: 2, d: 17, s: "04:50", i: "06:10" },
-            { r: 28, m: 2, d: 18, s: "04:49", i: "06:10" },
-            { r: 29, m: 2, d: 19, s: "04:48", i: "06:11" },
-            { r: 30, m: 2, d: 20, s: "04:47", i: "06:11" },
+            { r: 1, m: 1, d: 19, s: "05:12", f: "05:15", i: "05:58" },
+            { r: 2, m: 1, d: 20, s: "05:11", f: "05:14", i: "05:58" },
+            { r: 3, m: 1, d: 21, s: "05:11", f: "05:14", i: "05:59" },
+            { r: 4, m: 1, d: 22, s: "05:10", f: "05:13", i: "05:59" },
+            { r: 5, m: 1, d: 23, s: "05:09", f: "05:12", i: "06:00" },
+            { r: 6, m: 1, d: 24, s: "05:08", f: "05:11", i: "06:00" },
+            { r: 7, m: 1, d: 25, s: "05:08", f: "05:11", i: "06:01" },
+            { r: 8, m: 1, d: 26, s: "05:07", f: "05:10", i: "06:01" },
+            { r: 9, m: 1, d: 27, s: "05:06", f: "05:09", i: "06:02" },
+            { r: 10, m: 1, d: 28, s: "05:05", f: "05:08", i: "06:02" },
+            
+            { r: 11, m: 2, d: 1, s: "05:05", f: "05:08", i: "06:03" },
+            { r: 12, m: 2, d: 2, s: "05:04", f: "05:07", i: "06:03" },
+            { r: 13, m: 2, d: 3, s: "05:03", f: "05:06", i: "06:04" },
+            { r: 14, m: 2, d: 4, s: "05:02", f: "05:05", i: "06:04" },
+            { r: 15, m: 2, d: 5, s: "05:01", f: "05:04", i: "06:05" },
+            { r: 16, m: 2, d: 6, s: "05:00", f: "05:03", i: "06:05" },
+            { r: 17, m: 2, d: 7, s: "04:59", f: "05:02", i: "06:06" },
+            { r: 18, m: 2, d: 8, s: "04:58", f: "05:01", i: "06:06" },
+            { r: 19, m: 2, d: 9, s: "04:57", f: "05:00", i: "06:07" },
+            { r: 20, m: 2, d: 10, s: "04:57", f: "04:59", i: "06:07" },
+            { r: 21, m: 2, d: 11, s: "04:56", f: "04:58", i: "06:07" },
+            { r: 22, m: 2, d: 12, s: "04:55", f: "04:57", i: "06:08" },
+            { r: 23, m: 2, d: 13, s: "04:54", f: "04:57", i: "06:08" },
+            { r: 24, m: 2, d: 14, s: "04:53", f: "04:56", i: "06:09" },
+            { r: 25, m: 2, d: 15, s: "04:52", f: "04:55", i: "06:09" },
+            { r: 26, m: 2, d: 16, s: "04:51", f: "04:54", i: "06:10" },
+            { r: 27, m: 2, d: 17, s: "04:50", f: "04:53", i: "06:10" },
+            { r: 28, m: 2, d: 18, s: "04:49", f: "04:52", i: "06:10" },
+            { r: 29, m: 2, d: 19, s: "04:48", f: "04:50", i: "06:11" },
+            { r: 30, m: 2, d: 20, s: "04:47", f: "04:49", i: "06:11" },
         ];
 
         // Number Converters
@@ -582,7 +608,8 @@
             return `${newH}:${newM}`;
         }
 
-        // Calculates Fajr Azan (Sehri + 3 mins)
+        // Updated getFajrTime to use explicit data or calculation
+        // For compatibility with old logic calls, but we use 'f' property now in render loop
         function getFajrTime(sehriTimeStr) {
              return adjustTime(sehriTimeStr, 3);
         }
@@ -598,13 +625,6 @@
             const options = { month: 'short', day: 'numeric' };
             const locale = currentLang === 'bn' ? 'bn-BD' : 'en-US';
             return date.toLocaleDateString(locale, options);
-        }
-
-        function formatDay(m, d) {
-            const date = new Date(2026, m, d);
-            const locale = currentLang === 'bn' ? 'bn-BD' : 'en-US';
-            const dayName = date.toLocaleDateString(locale, { weekday: 'short' });
-            return currentLang === 'bn' ? dayName + ":" : dayName;
         }
 
         function populateDistricts() {
@@ -640,6 +660,7 @@
             const divisionSelect = document.getElementById('division-select');
             const districtSelect = document.getElementById('district-select');
             const selectedDiv = divisionSelect.value;
+            const errorDiv = document.getElementById('error-message');
 
             districtSelect.innerHTML = '';
             const distPlaceholder = document.createElement('option');
@@ -648,9 +669,11 @@
             distPlaceholder.disabled = true;
             distPlaceholder.selected = true;
             districtSelect.appendChild(distPlaceholder);
+            
+            errorDiv.classList.add('hidden'); // Hide error on change
 
             if (selectedDiv && divisions[selectedDiv]) {
-                divisions[selectedDiv].forEach(dist => {
+                divisions[selectedDiv].sort().forEach(dist => { // Sorted districts
                     const option = document.createElement('option');
                     option.value = dist;
                     option.textContent = dist;
@@ -661,10 +684,25 @@
 
         function changeDistrict() {
             const select = document.getElementById('district-select');
+            const errorDiv = document.getElementById('error-message');
+            const calendarSection = document.getElementById('calendar-section');
+            
             if (!select.value) return; 
             
             currentDistrict = select.value;
             const distObj = districtData[currentDistrict];
+            
+            // Validation: Check if district data exists
+            if (!distObj) {
+                errorDiv.classList.remove('hidden');
+                calendarSection.classList.add('hidden'); // Hide calendar if invalid
+                document.getElementById('current-district-name').textContent = "Unknown";
+                return;
+            }
+
+            errorDiv.classList.add('hidden');
+            calendarSection.classList.remove('hidden');
+
             const displayName = currentLang === 'bn' ? currentDistrict : distObj.en;
             document.getElementById('current-district-name').textContent = displayName;
 
@@ -681,7 +719,10 @@
 
             Object.values(tables).forEach(el => el.innerHTML = '');
 
-            const offsets = districtData[currentDistrict].offset; 
+            const distData = districtData[currentDistrict];
+            if(!distData) return; // Guard clause
+            
+            const offsets = distData.offset; 
 
             rawData.forEach(item => {
                 let container, color, text;
@@ -696,10 +737,11 @@
                 const ramadan = currentLang === 'bn' ? enToBnDigits(item.r.toString().padStart(2, '0')) : item.r.toString().padStart(2, '0');
                 const dateStr = formatDate(item.m, item.d);
                 
-                // Calculations
+                // Calculations using specific base times + district offset
+                // Note: Fajr offset is same as Sehri offset in my logic
                 const sTime = adjustTime(item.s, offsets[0]);
+                const fTime = adjustTime(item.f, offsets[0]); 
                 const iTime = adjustTime(item.i, offsets[1]);
-                const fTime = getFajrTime(sTime); // Fajr is Adjusted Sehri + 3 mins
 
                 const sehri = formatTime(sTime);
                 const fajr = formatTime(fTime);
@@ -728,7 +770,9 @@
             document.getElementById('lang-text').textContent = currentLang === 'bn' ? 'EN' : 'BN';
             
             const distObj = districtData[currentDistrict];
-            document.getElementById('current-district-name').textContent = currentLang === 'bn' ? currentDistrict : distObj.en;
+            if(distObj) {
+                document.getElementById('current-district-name').textContent = currentLang === 'bn' ? currentDistrict : distObj.en;
+            }
             
             populateDistricts();
         }
@@ -758,19 +802,24 @@
                     statusKey = "upcoming_ramadan";
                     todayData = rawData[0]; 
                 } else if (currentMonth > 2 || (currentMonth === 2 && currentDate > 20)) {
-                     statusKey = "ramadan_ended";
-                     todayData = rawData[29];
+                      statusKey = "ramadan_ended";
+                      todayData = rawData[29];
                 } else {
-                     statusKey = "today_schedule";
+                      statusKey = "today_schedule";
                 }
             }
 
             const t = translations[currentLang];
-            const offsets = districtData[currentDistrict].offset;
+            const distData = districtData[currentDistrict];
+            
+            if (!distData) return;
+
+            const offsets = distData.offset;
             const rNum = currentLang === 'bn' ? enToBnDigits(todayData.r.toString().padStart(2, '0')) : todayData.r.toString().padStart(2, '0');
             const dateStr = formatDate(todayData.m, todayData.d);
             
             const sTime = adjustTime(todayData.s, offsets[0]);
+            // Fajr not shown in highlight card in original design, just Sehri/Iftar
             const iTime = adjustTime(todayData.i, offsets[1]);
 
             document.getElementById('highlight-status').textContent = t[statusKey];
