@@ -99,7 +99,7 @@
                 <div class="w-8 h-8 rounded-full bg-gold-100 flex items-center justify-center text-gold-600">
                     <i class="fa-solid fa-moon"></i>
                 </div>
-                <span class="font-serif font-bold text-lg text-slate-700 hidden md:block" data-i18n="title">তোহফায়ে রমাদান</span>
+                <span class="font-serif font-bold text-lg text-slate-700 hidden md:block" data-i18n="title">মাহে রমজান ২০২৬</span>
                 <span class="font-serif font-bold text-base text-slate-700 block md:hidden" data-i18n="title_mobile">রমাদান ২০২৬</span>
             </div>
             
@@ -328,14 +328,16 @@
         </section>
         
         <!-- Sponsor / Footer -->
-        <footer class="mt-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 md:p-8 relative overflow-hidden">
-            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-gold-600 opacity-20 blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 rounded-full bg-emerald-600 opacity-20 blur-3xl"></div>
-
+        <footer class="mt-8 rounded-3xl bg-emerald-900 text-white p-6 md:p-10 relative overflow-hidden shadow-2xl">
+            <!-- Background patterns like header -->
+            <div class="absolute top-0 right-0 w-full h-full opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M20 20l10-10L20 0 10 10zM20 20L10 30 20 40 30 30z\' fill=\'%23ffffff\' fill-rule=\'evenodd\'/%3E%3C/svg%3E'); background-size: 20px 20px;"></div>
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-gold-500 rounded-full blur-3xl opacity-20"></div>
+            <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-emerald-500 rounded-full blur-3xl opacity-30"></div>
+        
             <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
                 <!-- Brand -->
-                <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
-                     <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full p-1 flex items-center justify-center shadow-lg border-2 border-gold-400 overflow-hidden transform hover:scale-105 transition-transform duration-300 relative">
+                <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                     <div class="w-20 h-20 md:w-24 md:h-24 bg-white rounded-full p-1 flex items-center justify-center shadow-lg border-2 border-gold-400 overflow-hidden transform hover:scale-105 transition-transform duration-300 relative">
                         <img src="1-01.png" alt="Logo" class="w-full h-full object-cover rounded-full" 
                              onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; document.getElementById('fallback-logo').style.display='flex';">
                         <!-- Fallback Icon -->
@@ -344,22 +346,22 @@
                         </div>
                     </div>
                     <div>
-                        <h1 class="text-xl md:text-2xl font-serif font-bold text-gold-400" data-i18n="org_name">নাগমুদ আদর্শ যুব ক্রীড়া সংঘ</h1>
-                        <p class="text-slate-400 text-xs md:text-sm" data-i18n="org_desc">স্বেচ্ছাসেবী, অরাজনৈতিক সামাজিক সংগঠন।</p>
+                        <h3 class="text-xl md:text-3xl font-serif font-bold text-gold-400 leading-tight" data-i18n="org_name">নাগমুদ আদর্শ যুব ক্রীড়া সংঘ</h3>
+                        <p class="text-emerald-100/80 text-sm md:text-base mt-1" data-i18n="org_desc">স্বেচ্ছাসেবী, অরাজনৈতিক সামাজিক সংগঠন।</p>
                     </div>
                 </div>
-
+        
                 <!-- Download Button -->
                 <div class="text-center md:text-right space-y-2" data-html2canvas-ignore="true">
-                    <button onclick="downloadImage(this)" class="bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-500 hover:to-gold-700 text-slate-900 font-bold py-2.5 px-6 rounded-xl text-xs md:text-sm flex items-center gap-2 transition-all shadow-lg mx-auto md:ml-auto transform hover:scale-105">
+                    <button onclick="downloadImage(this)" class="bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-500 hover:to-gold-700 text-slate-900 font-bold py-2 px-6 rounded-lg text-xs md:text-sm flex items-center gap-2 transition-all shadow-lg mx-auto md:ml-auto transform hover:scale-105 border border-gold-300">
                         <i class="fa-solid fa-image"></i>
                         <span data-i18n="download_pdf">ক্যালেন্ডার ডাউনলোড করুন</span>
                     </button>
                 </div>
             </div>
             
-            <div class="mt-8 pt-6 border-t border-slate-700/50 text-center text-xs text-slate-500">
-                &copy; <span data-i18n="footer_copy">২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Master Creation</span>
+            <div class="mt-10 pt-6 border-t border-emerald-800/50 text-center text-xs text-emerald-200/60">
+                <span data-i18n="footer_copy">@NAJKS ২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Master Creation</span>
             </div>
         </footer>
 
@@ -405,7 +407,7 @@
                 org_name: "নাগমুদ আদর্শ যুব ক্রীড়া সংঘ",
                 org_desc: "স্বেচ্ছাসেবী, অরাজনৈতিক সামাজিক সংগঠন।",
                 download_pdf: "ক্যালেন্ডার ডাউনলোড করুন",
-                footer_copy: "২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Digital Creative",
+                footer_copy: "@NAJKS ২০২৬ তোহফায়ে রমাদান | ডিজাইন এবং কারিগরি সহযোগিতায় Master Creation",
                 today_schedule: "আজকের সময়সূচী",
                 upcoming_ramadan: "আসন্ন রমজান",
                 ramadan_ended: "রমজান সমাপ্ত",
@@ -450,7 +452,7 @@
                 org_name: "Nagmud Adarsha Jubo Krira Sangha",
                 org_desc: "Voluntary, non-political social organization.",
                 download_pdf: "Download Calendar Image",
-                footer_copy: "2026 Ramadan Calendar | Design by Digital Creative",
+                footer_copy: "@NAJKS 2026 Tohfaye Ramadan | Design & Tech Support by Master Creation",
                 today_schedule: "Today's Schedule",
                 upcoming_ramadan: "Upcoming Ramadan",
                 ramadan_ended: "Ramadan Ended",
@@ -895,6 +897,3 @@
 
 </body>
 </html>
-
-
-
